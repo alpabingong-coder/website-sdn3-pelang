@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import TopBar from "@/components/TopBar";
 import Navbar from "@/components/Navbar";
@@ -22,7 +24,8 @@ export default function PPDBPage() {
             </h1>
             <p className="text-lg text-blue-100 max-w-2xl mx-auto">
               {sekolah.nama} membuka pendaftaran siswa baru tahun ajaran
-              2025/2026. Pendaftaran <strong className="text-[#FDB913]">GRATIS</strong>!
+              2025/2026. Pendaftaran{" "}
+              <strong className="text-[#FDB913]">GRATIS</strong>!
             </p>
           </div>
 
@@ -36,7 +39,9 @@ export default function PPDBPage() {
             <div className="bg-white/10 backdrop-blur rounded-xl p-5 text-center">
               <div className="text-3xl mb-2">👶</div>
               <div className="font-bold">Usia Minimal</div>
-              <div className="text-blue-100 text-sm">6 tahun per 1 Juli 2025</div>
+              <div className="text-blue-100 text-sm">
+                6 tahun per 1 Juli 2025
+              </div>
             </div>
             <div className="bg-white/10 backdrop-blur rounded-xl p-5 text-center">
               <div className="text-3xl mb-2">💰</div>
@@ -61,11 +66,36 @@ export default function PPDBPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
             {[
-              { no: "1", icon: "📝", judul: "Isi Formulir", desc: "Isi formulir pendaftaran online atau ambil di sekolah" },
-              { no: "2", icon: "📄", judul: "Lengkapi Berkas", desc: "Siapkan KK, Akta Lahir, Ijazah TK, dan foto 3x4" },
-              { no: "3", icon: "🏫", judul: "Verifikasi", desc: "Datang ke sekolah untuk verifikasi berkas asli" },
-              { no: "4", icon: "📊", judul: "Seleksi", desc: "Proses seleksi berdasarkan usia & domisili" },
-              { no: "5", icon: "🎉", judul: "Pengumuman", desc: "Hasil seleksi diumumkan via website & WA" },
+              {
+                no: "1",
+                icon: "📝",
+                judul: "Isi Formulir",
+                desc: "Isi formulir pendaftaran online atau ambil di sekolah",
+              },
+              {
+                no: "2",
+                icon: "📄",
+                judul: "Lengkapi Berkas",
+                desc: "Siapkan KK, Akta Lahir, Ijazah TK, dan foto 3x4",
+              },
+              {
+                no: "3",
+                icon: "🏫",
+                judul: "Verifikasi",
+                desc: "Datang ke sekolah untuk verifikasi berkas asli",
+              },
+              {
+                no: "4",
+                icon: "📊",
+                judul: "Seleksi",
+                desc: "Proses seleksi berdasarkan usia & domisili",
+              },
+              {
+                no: "5",
+                icon: "🎉",
+                judul: "Pengumuman",
+                desc: "Hasil seleksi diumumkan via website & WA",
+              },
             ].map((step, i) => (
               <div key={i} className="relative text-center">
                 <div className="w-16 h-16 mx-auto bg-[#1E5FAA] text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4">
@@ -144,8 +174,182 @@ export default function PPDBPage() {
         </div>
       </section>
 
-      {/* FAQ */}
+      {/* FORMULIR ONLINE + DOWNLOAD */}
       <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <span className="text-[#E63946] font-semibold text-sm uppercase tracking-wider">
+              Formulir Pendaftaran
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#1E5FAA] mt-2 mb-4">
+              Daftar Sekarang — Pilih Cara Anda
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Ada 2 cara mendaftar: isi formulir online (kirim via WhatsApp),
+              atau unduh formulir untuk diisi manual.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Opsi 1: Formulir Online */}
+            <div className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border-t-4 border-[#1E5FAA]">
+              <div className="text-5xl mb-4">💻</div>
+              <h3 className="text-2xl font-bold text-[#1E5FAA] mb-2">
+                Formulir Online
+              </h3>
+              <p className="text-gray-600 text-sm mb-6">
+                Isi data langsung di sini, lalu kirim via WhatsApp. Panitia
+                akan menghubungi Anda.
+              </p>
+
+              {/* Form */}
+              <div className="space-y-3">
+                <input
+                  id="nama"
+                  type="text"
+                  placeholder="Nama Lengkap Calon Siswa *"
+                  className="w-full border border-gray-200 rounded-md px-4 py-2.5 text-sm focus:outline-none focus:border-[#1E5FAA]"
+                />
+                <input
+                  id="ttl"
+                  type="text"
+                  placeholder="Tempat, Tanggal Lahir *"
+                  className="w-full border border-gray-200 rounded-md px-4 py-2.5 text-sm focus:outline-none focus:border-[#1E5FAA]"
+                />
+                <select
+                  id="jenisKelamin"
+                  className="w-full border border-gray-200 rounded-md px-4 py-2.5 text-sm focus:outline-none focus:border-[#1E5FAA] bg-white"
+                >
+                  <option value="">Jenis Kelamin *</option>
+                  <option value="Laki-laki">Laki-laki</option>
+                  <option value="Perempuan">Perempuan</option>
+                </select>
+                <input
+                  id="namaOrtu"
+                  type="text"
+                  placeholder="Nama Orang Tua / Wali *"
+                  className="w-full border border-gray-200 rounded-md px-4 py-2.5 text-sm focus:outline-none focus:border-[#1E5FAA]"
+                />
+                <input
+                  id="alamat"
+                  type="text"
+                  placeholder="Alamat Lengkap (RT/RW, Desa, Kec) *"
+                  className="w-full border border-gray-200 rounded-md px-4 py-2.5 text-sm focus:outline-none focus:border-[#1E5FAA]"
+                />
+                <input
+                  id="hp"
+                  type="text"
+                  placeholder="No. HP / WA Orang Tua *"
+                  className="w-full border border-gray-200 rounded-md px-4 py-2.5 text-sm focus:outline-none focus:border-[#1E5FAA]"
+                />
+                <textarea
+                  id="catatan"
+                  placeholder="Catatan tambahan (opsional)"
+                  rows={3}
+                  className="w-full border border-gray-200 rounded-md px-4 py-2.5 text-sm focus:outline-none focus:border-[#1E5FAA]"
+                ></textarea>
+
+                <button
+                  onClick={() => {
+                    const get = (id: string) =>
+                      (
+                        document.getElementById(id) as
+                          | HTMLInputElement
+                          | HTMLTextAreaElement
+                          | HTMLSelectElement
+                      )?.value || "-";
+
+                    const pesan =
+                      `*PENDAFTARAN PPDB ${sekolah.nama}*\n` +
+                      `Tahun Ajaran 2025/2026\n` +
+                      `---------------------------------\n` +
+                      `*Nama Calon Siswa:* ${get("nama")}\n` +
+                      `*Tempat, Tanggal Lahir:* ${get("ttl")}\n` +
+                      `*Jenis Kelamin:* ${get("jenisKelamin")}\n` +
+                      `*Nama Orang Tua/Wali:* ${get("namaOrtu")}\n` +
+                      `*Alamat:* ${get("alamat")}\n` +
+                      `*No. HP/WA:* ${get("hp")}\n` +
+                      `*Catatan:* ${get("catatan")}\n` +
+                      `---------------------------------\n` +
+                      `Mohon konfirmasi pendaftaran saya. Terima kasih.`;
+
+                    window.open(
+                      `https://wa.me/${sekolah.whatsapp}?text=${encodeURIComponent(
+                        pesan
+                      )}`,
+                      "_blank"
+                    );
+                  }}
+                  className="w-full bg-[#25D366] text-white py-3 rounded-md font-bold hover:bg-[#1da851] transition flex items-center justify-center gap-2"
+                >
+                  💬 Kirim via WhatsApp
+                </button>
+
+                <p className="text-xs text-gray-400 text-center">
+                  Data akan dikirim ke WA sekolah: {sekolah.telepon}
+                </p>
+              </div>
+            </div>
+
+            {/* Opsi 2: Download Formulir */}
+            <div className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border-t-4 border-[#FDB913]">
+              <div className="text-5xl mb-4">📄</div>
+              <h3 className="text-2xl font-bold text-[#1E5FAA] mb-2">
+                Download Formulir
+              </h3>
+              <p className="text-gray-600 text-sm mb-6">
+                Unduh formulir dalam format PDF, isi manual di rumah, lalu
+                bawa ke sekolah bersama berkas-berkasnya.
+              </p>
+
+                           {/* Preview mini */}
+              <div className="bg-[#F5F9FF] rounded-lg p-4 mb-6 text-center">
+                <div className="text-6xl mb-2">📋</div>
+                <div className="font-bold text-[#1E5FAA]">
+                  Formulir PPDB 2025/2026
+                </div>
+                <div className="text-xs text-gray-500 mt-1">
+                  Format: PDF (1 halaman) • Ukuran: A4
+                </div>
+              </div>
+
+              {/* Tombol Download PDF Langsung */}
+              <a
+                href="/formulir/formulir-ppdb.pdf"
+                download="Formulir-PPDB-SDN3Pelang-2025.pdf"
+                className="block w-full bg-[#1E5FAA] text-white text-center py-3 rounded-md font-bold hover:bg-[#164a85] transition mb-3"
+              >
+                📥 Download Formulir (PDF)
+              </a>
+
+              <p className="text-xs text-gray-400 text-center">
+                Klik tombol di atas → file PDF langsung ter-download. Isi
+                manual, lalu bawa ke sekolah.
+              </p>
+            </div>
+          </div>
+
+          {/* Info tambahan */}
+          <div className="mt-10 bg-[#F5F9FF] rounded-xl p-6 max-w-3xl mx-auto">
+            <div className="flex items-start gap-4">
+              <div className="text-3xl">💡</div>
+              <div>
+                <div className="font-bold text-[#1E5FAA] mb-1">
+                  Tidak bisa akses formulir online?
+                </div>
+                <p className="text-sm text-gray-600">
+                  Datang langsung ke sekolah pada jam kerja (07.00 - 12.00 WIB)
+                  dan ambil formulir fisik di ruang panitia PPDB. Panitia siap
+                  membantu Anda.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-16 bg-[#F5F9FF]">
         <div className="max-w-3xl mx-auto px-4">
           <div className="text-center mb-12">
             <span className="text-[#E63946] font-semibold text-sm uppercase tracking-wider">
@@ -172,7 +376,7 @@ export default function PPDBPage() {
               },
               {
                 q: "Apakah bisa mendaftar online?",
-                a: "Untuk saat ini pendaftaran dilakukan langsung di sekolah. Hubungi kami via WhatsApp untuk info lebih lanjut.",
+                a: "Ya! Isi formulir online di halaman ini, kirim via WhatsApp. Atau download formulir dan bawa ke sekolah.",
               },
               {
                 q: "Apa saja ekstrakurikuler yang tersedia?",
@@ -181,7 +385,7 @@ export default function PPDBPage() {
             ].map((item, i) => (
               <details
                 key={i}
-                className="bg-[#F5F9FF] rounded-xl p-5 group cursor-pointer"
+                className="bg-white rounded-xl p-5 group cursor-pointer shadow-sm"
               >
                 <summary className="font-bold text-[#1E5FAA] list-none flex justify-between items-center">
                   {item.q}
@@ -209,7 +413,9 @@ export default function PPDBPage() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href={`https://wa.me/${sekolah.whatsapp}?text=Assalamualaikum,%20saya%20ingin%20bertanya%20tentang%20PPDB%20${encodeURIComponent(sekolah.namaSingkat)}`}
+              href={`https://wa.me/${sekolah.whatsapp}?text=${encodeURIComponent(
+                `Assalamualaikum, saya ingin bertanya tentang PPDB ${sekolah.namaSingkat}`
+              )}`}
               target="_blank"
               rel="noopener noreferrer"
               className="bg-[#25D366] text-white px-8 py-3 rounded-md font-bold hover:bg-[#1da851] transition inline-flex items-center justify-center gap-2"
