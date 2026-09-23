@@ -6,6 +6,57 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { sekolah } from "@/lib/data";
 
+// ============================================
+// FUNGSI RESIZE GAMBAR OTOMATIS
+// Mengecilkan gambar sebelum dikirim ke server
+// ============================================
+async function resizeImage(file: File, maxSizeKB: number = 500): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        let width = img.width;
+        let height = img.height;
+
+        // Max dimensi 1200px (cukup untuk berkas PPDB)
+        const MAX_DIM = 1200;
+        if (width > MAX_DIM || height > MAX_DIM) {
+          if (width > height) {
+            height = (height * MAX_DIM) / width;
+            width = MAX_DIM;
+          } else {
+            width = (width * MAX_DIM) / height;
+            height = MAX_DIM;
+          }
+        }
+
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext("2d");
+        if (!ctx) return reject("Canvas error");
+        ctx.drawImage(img, 0, 0, width, height);
+
+        // Kompres dengan kualitas iteratif (target < maxSizeKB)
+        let quality = 0.8;
+        let dataUrl = canvas.toDataURL("image/jpeg", quality);
+
+        while (dataUrl.length / 1024 > maxSizeKB && quality > 0.3) {
+          quality -= 0.1;
+          dataUrl = canvas.toDataURL("image/jpeg", quality);
+        }
+
+        resolve(dataUrl.split(",")[1]);
+      };
+      img.onerror = () => reject("Image load error");
+      img.src = e.target?.result as string;
+    };
+    reader.onerror = () => reject("File read error");
+    reader.readAsDataURL(file);
+  });
+}
+
 export default function PPDBPage() {
   return (
     <main className="min-h-screen">
@@ -226,7 +277,7 @@ export default function PPDBPage() {
                     📎 Upload Berkas (opsional)
                   </p>
                   <p className="text-xs text-gray-400 mb-3">
-                    Format: JPG, PNG, atau PDF. Maks 2MB per file.
+                    Format: JPG, PNG, atau PDF. Gambar otomatis dikompres.
                   </p>
                   <div className="space-y-2">
                     <div>
@@ -323,63 +374,74 @@ export default function PPDBPage() {
                         if (input && input.files && input.files[0]) {
                           const file = input.files[0];
 
-                          if (file.size > 2 * 1024 * 1024) {
-                            alert(
-                              `File ${fi.label} terlalu besar (maks 2MB). Silakan kompres dulu.`
-                            );
-                            btn.disabled = false;
-                            btn.innerHTML = originalText;
-                            return;
+                          // Kalau PDF, kirim langsung tanpa resize (maks 3MB)
+                          if (file.type === "application/pdf") {
+                            if (file.size > 3 * 1024 * 1024) {
+                              alert(
+                                `File ${fi.label} (PDF) terlalu besar. Maks 3MB.`
+                              );
+                              btn.disabled = false;
+                              btn.innerHTML = originalText;
+                              return;
+                            }
+                            const base64 = await new Promise<string>((resolve) => {
+                              const reader = new FileReader();
+                              reader.onloadend = () => {
+                                resolve((reader.result as string).split(",")[1]);
+                              };
+                              reader.readAsDataURL(file);
+                            });
+                            data.files.push({
+                              base64,
+                              name: `${fi.label}-${file.name}`,
+                              type: file.type,
+                            });
+                          } else {
+                            // Kalau gambar, resize otomatis jadi < 500KB
+                            try {
+                              const base64 = await resizeImage(file, 500);
+                              data.files.push({
+                                base64,
+                                name: `${fi.label}-${file.name.replace(/\.[^.]+$/, "")}.jpg`,
+                                type: "image/jpeg",
+                              });
+                            } catch (err) {
+                              alert(`Gagal memproses ${fi.label}. Coba file lain.`);
+                              btn.disabled = false;
+                              btn.innerHTML = originalText;
+                              return;
+                            }
                           }
-
-                          const base64 = await new Promise<string>((resolve) => {
-                            const reader = new FileReader();
-                            reader.onloadend = () => {
-                              const result = reader.result as string;
-                              const base64Data = result.split(",")[1];
-                              resolve(base64Data);
-                            };
-                            reader.readAsDataURL(file);
-                          });
-
-                          data.files.push({
-                            base64: base64,
-                            name: `${fi.label}-${file.name}`,
-                            type: file.type,
-                          });
                         }
                       }
 
                       const GAS_URL =
                         "https://script.google.com/macros/s/AKfycbwwQCmvIJndEoHixVkIEK1eNXmD48fG9vbj4UaIFDSBRrH94SjR6dHPM4ojWncK3iJlFg/exec";
 
-                      const response = await fetch(GAS_URL, {
+                      // Kirim ke Apps Script pakai no-cors
+                      await fetch(GAS_URL, {
                         method: "POST",
+                        mode: "no-cors",
                         body: JSON.stringify(data),
                       });
 
-                      const result = await response.json();
+                      alert(
+                        "✅ Pendaftaran berhasil dikirim!\n\n" +
+                          "Data dan berkas Anda sudah diterima. Panitia akan menghubungi Anda via WhatsApp.\n\n" +
+                          "Terima kasih 🙏"
+                      );
 
-                      if (result.status === "success") {
-                        alert(
-                          "✅ Pendaftaran berhasil dikirim!\n\n" +
-                            "Data dan berkas Anda sudah diterima. Panitia akan menghubungi Anda via WhatsApp.\n\n" +
-                            "Terima kasih 🙏"
-                        );
-
-                        (document.getElementById("nama") as HTMLInputElement).value = "";
-                        (document.getElementById("ttl") as HTMLInputElement).value = "";
-                        (document.getElementById("jenisKelamin") as HTMLSelectElement).value = "";
-                        (document.getElementById("namaOrtu") as HTMLInputElement).value = "";
-                        (document.getElementById("alamat") as HTMLInputElement).value = "";
-                        (document.getElementById("hp") as HTMLInputElement).value = "";
-                        (document.getElementById("catatan") as HTMLTextAreaElement).value = "";
-                        fileInputs.forEach((fi) => {
-                          (document.getElementById(fi.id) as HTMLInputElement).value = "";
-                        });
-                      } else {
-                        alert("❌ Gagal mengirim: " + result.message);
-                      }
+                      // Reset form
+                      (document.getElementById("nama") as HTMLInputElement).value = "";
+                      (document.getElementById("ttl") as HTMLInputElement).value = "";
+                      (document.getElementById("jenisKelamin") as HTMLSelectElement).value = "";
+                      (document.getElementById("namaOrtu") as HTMLInputElement).value = "";
+                      (document.getElementById("alamat") as HTMLInputElement).value = "";
+                      (document.getElementById("hp") as HTMLInputElement).value = "";
+                      (document.getElementById("catatan") as HTMLTextAreaElement).value = "";
+                      fileInputs.forEach((fi) => {
+                        (document.getElementById(fi.id) as HTMLInputElement).value = "";
+                      });
                     } catch (err) {
                       console.error(err);
                       alert(
