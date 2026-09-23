@@ -29,7 +29,6 @@ export default function PPDBPage() {
             </p>
           </div>
 
-          {/* Info Cepat */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-10 max-w-4xl mx-auto">
             <div className="bg-white/10 backdrop-blur rounded-xl p-5 text-center">
               <div className="text-3xl mb-2">📅</div>
@@ -66,36 +65,11 @@ export default function PPDBPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
             {[
-              {
-                no: "1",
-                icon: "📝",
-                judul: "Isi Formulir",
-                desc: "Isi formulir pendaftaran online atau ambil di sekolah",
-              },
-              {
-                no: "2",
-                icon: "📄",
-                judul: "Lengkapi Berkas",
-                desc: "Siapkan KK, Akta Lahir, Ijazah TK, dan foto 3x4",
-              },
-              {
-                no: "3",
-                icon: "🏫",
-                judul: "Verifikasi",
-                desc: "Datang ke sekolah untuk verifikasi berkas asli",
-              },
-              {
-                no: "4",
-                icon: "📊",
-                judul: "Seleksi",
-                desc: "Proses seleksi berdasarkan usia & domisili",
-              },
-              {
-                no: "5",
-                icon: "🎉",
-                judul: "Pengumuman",
-                desc: "Hasil seleksi diumumkan via website & WA",
-              },
+              { no: "1", icon: "📝", judul: "Isi Formulir", desc: "Isi formulir pendaftaran online atau ambil di sekolah" },
+              { no: "2", icon: "📄", judul: "Lengkapi Berkas", desc: "Siapkan KK, Akta Lahir, Ijazah TK, dan foto 3x4" },
+              { no: "3", icon: "🏫", judul: "Verifikasi", desc: "Datang ke sekolah untuk verifikasi berkas asli" },
+              { no: "4", icon: "📊", judul: "Seleksi", desc: "Proses seleksi berdasarkan usia & domisili" },
+              { no: "5", icon: "🎉", judul: "Pengumuman", desc: "Hasil seleksi diumumkan via website & WA" },
             ].map((step, i) => (
               <div key={i} className="relative text-center">
                 <div className="w-16 h-16 mx-auto bg-[#1E5FAA] text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4">
@@ -119,7 +93,6 @@ export default function PPDBPage() {
       <section className="py-16 bg-[#F5F9FF]">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-8">
-            {/* Syarat */}
             <div className="bg-white rounded-2xl p-8 shadow-sm">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-12 bg-[#FDB913] rounded-xl flex items-center justify-center text-2xl">
@@ -145,7 +118,6 @@ export default function PPDBPage() {
               </ul>
             </div>
 
-            {/* Berkas */}
             <div className="bg-white rounded-2xl p-8 shadow-sm">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-12 bg-[#1E5FAA] rounded-xl flex items-center justify-center text-2xl">
@@ -185,7 +157,7 @@ export default function PPDBPage() {
               Daftar Sekarang — Pilih Cara Anda
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Ada 2 cara mendaftar: isi formulir online (kirim via WhatsApp),
+              Ada 2 cara mendaftar: isi formulir online (kirim via website),
               atau unduh formulir untuk diisi manual.
             </p>
           </div>
@@ -198,11 +170,10 @@ export default function PPDBPage() {
                 Formulir Online
               </h3>
               <p className="text-gray-600 text-sm mb-6">
-                Isi data langsung di sini, lalu kirim via WhatsApp. Panitia
-                akan menghubungi Anda.
+                Isi data dan upload berkas di sini. Data akan langsung
+                tersimpan ke sistem sekolah.
               </p>
 
-              {/* Form */}
               <div className="space-y-3">
                 <input
                   id="nama"
@@ -249,44 +220,183 @@ export default function PPDBPage() {
                   className="w-full border border-gray-200 rounded-md px-4 py-2.5 text-sm focus:outline-none focus:border-[#1E5FAA]"
                 ></textarea>
 
+                {/* UPLOAD BERKAS */}
+                <div className="border-t pt-4 mt-2">
+                  <p className="text-sm font-semibold text-[#1E5FAA] mb-1">
+                    📎 Upload Berkas (opsional)
+                  </p>
+                  <p className="text-xs text-gray-400 mb-3">
+                    Format: JPG, PNG, atau PDF. Maks 2MB per file.
+                  </p>
+                  <div className="space-y-2">
+                    <div>
+                      <label className="text-xs text-gray-600 block mb-1">
+                        Kartu Keluarga (KK)
+                      </label>
+                      <input
+                        id="fileKK"
+                        type="file"
+                        accept="image/*,application/pdf"
+                        className="w-full text-xs border border-gray-200 rounded-md px-2 py-1.5 file:mr-2 file:py-1 file:px-3 file:rounded file:border-0 file:text-xs file:bg-[#1E5FAA] file:text-white hover:file:bg-[#164a85]"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-xs text-gray-600 block mb-1">
+                        Akta Kelahiran
+                      </label>
+                      <input
+                        id="fileAkta"
+                        type="file"
+                        accept="image/*,application/pdf"
+                        className="w-full text-xs border border-gray-200 rounded-md px-2 py-1.5 file:mr-2 file:py-1 file:px-3 file:rounded file:border-0 file:text-xs file:bg-[#1E5FAA] file:text-white hover:file:bg-[#164a85]"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-xs text-gray-600 block mb-1">
+                        Ijazah TK/PAUD (opsional)
+                      </label>
+                      <input
+                        id="fileIjazah"
+                        type="file"
+                        accept="image/*,application/pdf"
+                        className="w-full text-xs border border-gray-200 rounded-md px-2 py-1.5 file:mr-2 file:py-1 file:px-3 file:rounded file:border-0 file:text-xs file:bg-[#1E5FAA] file:text-white hover:file:bg-[#164a85]"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-xs text-gray-600 block mb-1">
+                        Foto 3x4
+                      </label>
+                      <input
+                        id="fileFoto"
+                        type="file"
+                        accept="image/*"
+                        className="w-full text-xs border border-gray-200 rounded-md px-2 py-1.5 file:mr-2 file:py-1 file:px-3 file:rounded file:border-0 file:text-xs file:bg-[#1E5FAA] file:text-white hover:file:bg-[#164a85]"
+                      />
+                    </div>
+                  </div>
+                </div>
+
                 <button
-                  onClick={() => {
-                    const get = (id: string) =>
-                      (
-                        document.getElementById(id) as
-                          | HTMLInputElement
-                          | HTMLTextAreaElement
-                          | HTMLSelectElement
-                      )?.value || "-";
+                  id="btnKirim"
+                  onClick={async () => {
+                    const btn = document.getElementById("btnKirim") as HTMLButtonElement;
+                    const originalText = btn.innerHTML;
+                    btn.disabled = true;
+                    btn.innerHTML = "⏳ Mengirim...";
 
-                    const pesan =
-                      `*PENDAFTARAN PPDB ${sekolah.nama}*\n` +
-                      `Tahun Ajaran 2025/2026\n` +
-                      `---------------------------------\n` +
-                      `*Nama Calon Siswa:* ${get("nama")}\n` +
-                      `*Tempat, Tanggal Lahir:* ${get("ttl")}\n` +
-                      `*Jenis Kelamin:* ${get("jenisKelamin")}\n` +
-                      `*Nama Orang Tua/Wali:* ${get("namaOrtu")}\n` +
-                      `*Alamat:* ${get("alamat")}\n` +
-                      `*No. HP/WA:* ${get("hp")}\n` +
-                      `*Catatan:* ${get("catatan")}\n` +
-                      `---------------------------------\n` +
-                      `Mohon konfirmasi pendaftaran saya. Terima kasih.`;
+                    try {
+                      const get = (id: string) =>
+                        (
+                          document.getElementById(id) as
+                            | HTMLInputElement
+                            | HTMLTextAreaElement
+                            | HTMLSelectElement
+                        )?.value || "-";
 
-                    window.open(
-                      `https://wa.me/${sekolah.whatsapp}?text=${encodeURIComponent(
-                        pesan
-                      )}`,
-                      "_blank"
-                    );
+                      const data = {
+                        namaSiswa: get("nama"),
+                        ttl: get("ttl"),
+                        jenisKelamin: get("jenisKelamin"),
+                        namaOrtu: get("namaOrtu"),
+                        alamat: get("alamat"),
+                        hp: get("hp"),
+                        catatan: get("catatan"),
+                        files: [] as { base64: string; name: string; type: string }[],
+                      };
+
+                      if (data.namaSiswa === "-" || data.hp === "-") {
+                        alert("Mohon isi minimal Nama Siswa dan No. HP/WA!");
+                        btn.disabled = false;
+                        btn.innerHTML = originalText;
+                        return;
+                      }
+
+                      const fileInputs = [
+                        { id: "fileKK", label: "KK" },
+                        { id: "fileAkta", label: "Akta-Kelahiran" },
+                        { id: "fileIjazah", label: "Ijazah-TK" },
+                        { id: "fileFoto", label: "Foto-3x4" },
+                      ];
+
+                      for (const fi of fileInputs) {
+                        const input = document.getElementById(fi.id) as HTMLInputElement;
+                        if (input && input.files && input.files[0]) {
+                          const file = input.files[0];
+
+                          if (file.size > 2 * 1024 * 1024) {
+                            alert(
+                              `File ${fi.label} terlalu besar (maks 2MB). Silakan kompres dulu.`
+                            );
+                            btn.disabled = false;
+                            btn.innerHTML = originalText;
+                            return;
+                          }
+
+                          const base64 = await new Promise<string>((resolve) => {
+                            const reader = new FileReader();
+                            reader.onloadend = () => {
+                              const result = reader.result as string;
+                              const base64Data = result.split(",")[1];
+                              resolve(base64Data);
+                            };
+                            reader.readAsDataURL(file);
+                          });
+
+                          data.files.push({
+                            base64: base64,
+                            name: `${fi.label}-${file.name}`,
+                            type: file.type,
+                          });
+                        }
+                      }
+
+                      const GAS_URL =
+                        "https://script.google.com/macros/s/AKfycbwwQCmvIJndEoHixVkIEK1eNXmD48fG9vbj4UaIFDSBRrH94SjR6dHPM4ojWncK3iJlFg/exec";
+
+                      const response = await fetch(GAS_URL, {
+                        method: "POST",
+                        body: JSON.stringify(data),
+                      });
+
+                      const result = await response.json();
+
+                      if (result.status === "success") {
+                        alert(
+                          "✅ Pendaftaran berhasil dikirim!\n\n" +
+                            "Data dan berkas Anda sudah diterima. Panitia akan menghubungi Anda via WhatsApp.\n\n" +
+                            "Terima kasih 🙏"
+                        );
+
+                        (document.getElementById("nama") as HTMLInputElement).value = "";
+                        (document.getElementById("ttl") as HTMLInputElement).value = "";
+                        (document.getElementById("jenisKelamin") as HTMLSelectElement).value = "";
+                        (document.getElementById("namaOrtu") as HTMLInputElement).value = "";
+                        (document.getElementById("alamat") as HTMLInputElement).value = "";
+                        (document.getElementById("hp") as HTMLInputElement).value = "";
+                        (document.getElementById("catatan") as HTMLTextAreaElement).value = "";
+                        fileInputs.forEach((fi) => {
+                          (document.getElementById(fi.id) as HTMLInputElement).value = "";
+                        });
+                      } else {
+                        alert("❌ Gagal mengirim: " + result.message);
+                      }
+                    } catch (err) {
+                      console.error(err);
+                      alert(
+                        "❌ Terjadi kesalahan. Cek koneksi internet dan coba lagi."
+                      );
+                    } finally {
+                      btn.disabled = false;
+                      btn.innerHTML = originalText;
+                    }
                   }}
-                  className="w-full bg-[#25D366] text-white py-3 rounded-md font-bold hover:bg-[#1da851] transition flex items-center justify-center gap-2"
+                  className="w-full bg-[#25D366] text-white py-3 rounded-md font-bold hover:bg-[#1da851] transition flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  💬 Kirim via WhatsApp
+                  📤 Kirim Pendaftaran Online
                 </button>
 
                 <p className="text-xs text-gray-400 text-center">
-                  Data akan dikirim ke WA sekolah: {sekolah.telepon}
+                  Data akan tersimpan otomatis ke sistem sekolah.
                 </p>
               </div>
             </div>
@@ -302,7 +412,6 @@ export default function PPDBPage() {
                 bawa ke sekolah bersama berkas-berkasnya.
               </p>
 
-                           {/* Preview mini */}
               <div className="bg-[#F5F9FF] rounded-lg p-4 mb-6 text-center">
                 <div className="text-6xl mb-2">📋</div>
                 <div className="font-bold text-[#1E5FAA]">
@@ -313,7 +422,6 @@ export default function PPDBPage() {
                 </div>
               </div>
 
-              {/* Tombol Download PDF Langsung */}
               <a
                 href="/formulir/formulir-ppdb.pdf"
                 download="Formulir-PPDB-SDN3Pelang-2025.pdf"
@@ -323,13 +431,11 @@ export default function PPDBPage() {
               </a>
 
               <p className="text-xs text-gray-400 text-center">
-                Klik tombol di atas → file PDF langsung ter-download. Isi
-                manual, lalu bawa ke sekolah.
+                Klik tombol di atas → file PDF langsung ter-download.
               </p>
             </div>
           </div>
 
-          {/* Info tambahan */}
           <div className="mt-10 bg-[#F5F9FF] rounded-xl p-6 max-w-3xl mx-auto">
             <div className="flex items-start gap-4">
               <div className="text-3xl">💡</div>
@@ -339,8 +445,7 @@ export default function PPDBPage() {
                 </div>
                 <p className="text-sm text-gray-600">
                   Datang langsung ke sekolah pada jam kerja (07.00 - 12.00 WIB)
-                  dan ambil formulir fisik di ruang panitia PPDB. Panitia siap
-                  membantu Anda.
+                  dan ambil formulir fisik di ruang panitia PPDB.
                 </p>
               </div>
             </div>
@@ -376,7 +481,7 @@ export default function PPDBPage() {
               },
               {
                 q: "Apakah bisa mendaftar online?",
-                a: "Ya! Isi formulir online di halaman ini, kirim via WhatsApp. Atau download formulir dan bawa ke sekolah.",
+                a: "Ya! Isi formulir online di halaman ini, kirim via website. Atau download formulir dan bawa ke sekolah.",
               },
               {
                 q: "Apa saja ekstrakurikuler yang tersedia?",
