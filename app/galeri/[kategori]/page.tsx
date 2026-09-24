@@ -3,9 +3,8 @@ import { notFound } from "next/navigation";
 import TopBar from "@/components/TopBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { sekolah, kategoriGaleri, galeri } from "@/lib/data";
+import { kategoriGaleri, galeri } from "@/lib/data";
 
-// Generate halaman statis untuk tiap kategori (optimasi)
 export function generateStaticParams() {
   return kategoriGaleri.map((kat) => ({
     kategori: kat.slug,
@@ -18,16 +17,13 @@ export default async function KategoriGaleriPage({
   params: Promise<{ kategori: string }>;
 }) {
   const { kategori: slug } = await params;
-
-  // Cari kategori berdasarkan slug
   const kategoriData = kategoriGaleri.find((k) => k.slug === slug);
 
   if (!kategoriData) {
     notFound();
   }
 
-  // Ambil foto-foto untuk kategori ini
-  const fotoList = galeri[slug as keyof typeof galeri] || [];
+  const daftarHari = galeri[slug as keyof typeof galeri] || [];
 
   return (
     <main className="min-h-screen">
@@ -35,11 +31,8 @@ export default async function KategoriGaleriPage({
       <Navbar />
 
       {/* HERO */}
-      <section
-        className={`bg-gradient-to-br ${kategoriData.warna} text-white py-16 md:py-20`}
-      >
+      <section className={`bg-gradient-to-br ${kategoriData.warna} text-white py-16 md:py-20`}>
         <div className="max-w-7xl mx-auto px-4">
-          {/* Breadcrumb */}
           <div className="mb-6 text-sm">
             <Link href="/" className="hover:underline opacity-90">
               Home
@@ -64,72 +57,75 @@ export default async function KategoriGaleriPage({
         </div>
       </section>
 
-      {/* GRID FOTO */}
+      {/* DAFTAR HARI */}
       <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center justify-between mb-8 flex-wrap gap-4">
-            <div>
-              <h2 className="text-2xl font-bold text-[#1E5FAA]">
-                Foto Kegiatan
-              </h2>
-              <p className="text-sm text-gray-500 mt-1">
-                {fotoList.length} foto dalam kategori ini
-              </p>
-            </div>
-            <Link
-              href="/galeri"
-              className="text-[#1E5FAA] font-semibold text-sm hover:underline"
-            >
-              ← Kembali ke Galeri
-            </Link>
+        <div className="max-w-5xl mx-auto px-4">
+          <div className="text-center mb-10">
+            <span className="text-[#E63946] font-semibold text-sm uppercase tracking-wider">
+              Daftar Kegiatan
+            </span>
+            <h2 className="text-2xl md:text-3xl font-bold text-[#1E5FAA] mt-2 mb-2">
+              Pilih Tanggal Kegiatan
+            </h2>
+            <p className="text-sm text-gray-500">
+              Klik tanggal untuk melihat foto kegiatan pada hari itu
+            </p>
           </div>
 
-          {fotoList.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {fotoList.map((foto, i) => (
+          <div className="space-y-4">
+            {daftarHari.map((hari, i) => (
+              <Link
+                key={i}
+                href={`/galeri/${slug}/${hari.tanggal}`}
+                className="group bg-white rounded-xl border-2 border-gray-100 hover:border-[#1E5FAA] hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col md:flex-row md:items-center gap-4 p-4"
+              >
+                {/* Tanggal Badge */}
                 <div
-                  key={i}
-                  className="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+                  className={`flex-shrink-0 w-full md:w-32 h-24 md:h-24 rounded-lg bg-gradient-to-br ${kategoriData.warna} flex flex-col items-center justify-center text-white`}
                 >
-                  {/* Preview Foto / Placeholder */}
-                  <div
-                    className={`aspect-video bg-gradient-to-br ${kategoriData.warna} flex items-center justify-center relative overflow-hidden`}
-                  >
-                    {foto.foto ? (
-                      <img
-                        src={foto.foto}
-                        alt={foto.judul}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
-                    ) : (
-                      <div className="text-7xl group-hover:scale-110 transition-transform duration-500">
-                        {foto.emoji}
-                      </div>
-                    )}
-
-                    {/* Label tanggal */}
-                    <div className="absolute top-3 right-3 bg-white/90 backdrop-blur text-[#1E5FAA] text-xs font-bold px-3 py-1 rounded-full">
-                      📅 {foto.tanggal}
-                    </div>
+                  <div className="text-3xl font-bold">
+                    {new Date(hari.tanggal).getDate()}
                   </div>
-
-                  {/* Info */}
-                  <div className="p-5">
-                    <h3 className="font-bold text-[#1E5FAA] text-base mb-1 leading-snug">
-                      {foto.judul}
-                    </h3>
-                    <p className="text-xs text-gray-500">
-                      {kategoriData.nama}
-                    </p>
+                  <div className="text-xs opacity-90">
+                    {new Date(hari.tanggal).toLocaleDateString("id-ID", {
+                      month: "short",
+                      year: "numeric",
+                    })}
                   </div>
                 </div>
-              ))}
-            </div>
-          ) : (
+
+                {/* Info */}
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-lg font-bold text-[#1E5FAA] mb-1 group-hover:text-[#E63946] transition">
+                    {hari.judul}
+                  </h3>
+                  <p className="text-sm text-gray-500 mb-2">{hari.deskripsi}</p>
+                  <div className="flex items-center gap-3 text-xs text-gray-400">
+                    <span className="flex items-center gap-1">
+                      📸 <strong className="text-[#1E5FAA]">{hari.foto.length}</strong> foto
+                    </span>
+                    <span>•</span>
+                    <span>
+                      {new Date(hari.tanggal).toLocaleDateString("id-ID", {
+                        weekday: "long",
+                      })}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Panah */}
+                <div className="flex-shrink-0 text-2xl text-gray-300 group-hover:text-[#1E5FAA] group-hover:translate-x-2 transition-all">
+                  →
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          {daftarHari.length === 0 && (
             <div className="text-center py-16 bg-[#F5F9FF] rounded-2xl">
               <div className="text-6xl mb-4">📭</div>
               <p className="text-gray-500 mb-4">
-                Belum ada foto untuk kategori ini.
+                Belum ada kegiatan di kategori ini.
               </p>
               <Link
                 href="/galeri"
@@ -140,13 +136,13 @@ export default async function KategoriGaleriPage({
             </div>
           )}
 
-          {/* Info upload foto */}
-          <div className="mt-12 bg-[#F5F9FF] rounded-xl p-6 max-w-2xl mx-auto text-center">
-            <div className="text-3xl mb-2">📸</div>
-            <p className="text-sm text-gray-600">
-              Foto-foto dokumentasi asli akan segera ditambahkan. Untuk
-              sementara, ini adalah preview kategori.
-            </p>
+          <div className="text-center mt-10">
+            <Link
+              href="/galeri"
+              className="inline-flex items-center gap-2 text-[#1E5FAA] font-semibold hover:underline"
+            >
+              ← Kembali ke Galeri
+            </Link>
           </div>
         </div>
       </section>
