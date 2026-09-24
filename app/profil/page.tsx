@@ -141,9 +141,21 @@ export default function ProfilPage() {
           </div>
 
           {/* Kepala Sekolah - Highlight */}
-          <div className="max-w-md mx-auto mb-10">
+                   <div className="max-w-md mx-auto mb-10">
             <div className="bg-gradient-to-br from-[#1E5FAA] to-[#164a85] text-white rounded-2xl p-6 text-center shadow-xl">
-              <div className="text-5xl mb-3">👨‍💼</div>
+              {guru[0].foto ? (
+                <img
+                  src={guru[0].foto}
+                  alt={guru[0].nama}
+                  className="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-[#FDB913] shadow-lg"
+                />
+              ) : (
+                <div
+                  className={`w-32 h-32 rounded-full mx-auto mb-4 flex items-center justify-center text-4xl font-bold text-white bg-gradient-to-br ${guru[0].warna} border-4 border-[#FDB913] shadow-lg`}
+                >
+                  {guru[0].nama.charAt(0)}
+                </div>
+              )}
               <div className="text-xs uppercase tracking-wider text-[#FDB913] font-bold mb-1">
                 Kepala Sekolah
               </div>
@@ -152,16 +164,26 @@ export default function ProfilPage() {
           </div>
 
           {/* Guru Lainnya */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {guru.slice(1).map((g, i) => (
               <div
                 key={i}
                 className="bg-[#F5F9FF] rounded-xl p-5 hover:shadow-lg transition border-l-4 border-[#1E5FAA] hover:border-[#FDB913]"
               >
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-2xl flex-shrink-0">
-                    {g.emoji}
-                  </div>
+                <div className="flex items-center gap-4">
+                  {g.foto ? (
+                    <img
+                      src={g.foto}
+                      alt={g.nama}
+                      className="w-14 h-14 rounded-full object-cover flex-shrink-0 border-2 border-white shadow"
+                    />
+                  ) : (
+                    <div
+                      className={`w-14 h-14 rounded-full flex items-center justify-center text-xl font-bold text-white bg-gradient-to-br ${g.warna} flex-shrink-0 shadow`}
+                    >
+                      {g.nama.charAt(0)}
+                    </div>
+                  )}
                   <div className="min-w-0">
                     <div className="font-bold text-[#1E5FAA] text-sm leading-tight">
                       {g.nama}
