@@ -1,49 +1,10 @@
-"use client";
-
-import { useState } from "react";
 import Link from "next/link";
 import TopBar from "@/components/TopBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { sekolah } from "@/lib/data";
-
-// Data galeri (sementara pakai emoji sebagai placeholder)
-// Nanti tinggal ganti field `foto` dengan path gambar asli
-const galeriItems = [
-  { emoji: "🎒", judul: "Upacara Bendera", kategori: "Upacara", warna: "from-blue-500 to-blue-700", foto: "" },
-  { emoji: "📚", judul: "Kegiatan Belajar", kategori: "Belajar", warna: "from-emerald-500 to-emerald-700", foto: "" },
-  { emoji: "⚽", judul: "Olahraga", kategori: "Olahraga", warna: "from-orange-500 to-orange-700", foto: "" },
-  { emoji: "🎨", judul: "Seni & Kreativitas", kategori: "Seni", warna: "from-pink-500 to-pink-700", foto: "" },
-  { emoji: "🎭", judul: "Pentas Seni", kategori: "Seni", warna: "from-purple-500 to-purple-700", foto: "" },
-  { emoji: "🏆", judul: "Lomba & Prestasi", kategori: "Prestasi", warna: "from-yellow-500 to-yellow-700", foto: "" },
-  { emoji: "🌱", judul: "Pramuka", kategori: "Pramuka", warna: "from-green-500 to-green-700", foto: "" },
-  { emoji: "📖", judul: "Perpustakaan", kategori: "Belajar", warna: "from-indigo-500 to-indigo-700", foto: "" },
-  { emoji: "🎵", judul: "Latihan Musik", kategori: "Seni", warna: "from-red-500 to-red-700", foto: "" },
-  { emoji: "🏐", judul: "Bola Voli", kategori: "Olahraga", warna: "from-cyan-500 to-cyan-700", foto: "" },
-  { emoji: "🕌", judul: "Sholat Berjamaah", kategori: "Ibadah", warna: "from-teal-500 to-teal-700", foto: "" },
-  { emoji: "🧹", judul: "Jumat Bersih", kategori: "Upacara", warna: "from-lime-500 to-lime-700", foto: "" },
-];
-
-const kategoriList = [
-  "Semua",
-  "Upacara",
-  "Belajar",
-  "Olahraga",
-  "Seni",
-  "Prestasi",
-  "Pramuka",
-  "Ibadah",
-];
+import { sekolah, kategoriGaleri } from "@/lib/data";
 
 export default function GaleriPage() {
-  const [filter, setFilter] = useState("Semua");
-  const [lightbox, setLightbox] = useState<number | null>(null);
-
-  const filteredItems =
-    filter === "Semua"
-      ? galeriItems
-      : galeriItems.filter((item) => item.kategori === filter);
-
   return (
     <main className="min-h-screen">
       <TopBar />
@@ -59,181 +20,70 @@ export default function GaleriPage() {
             Momen Berharga di {sekolah.namaSingkat}
           </h1>
           <p className="text-lg text-blue-100 max-w-2xl mx-auto">
-            Kumpulan dokumentasi kegiatan belajar, ekstrakurikuler, dan
-            momen seru lainnya.
+            Klik kategori di bawah untuk melihat dokumentasi foto kegiatan.
           </p>
         </div>
       </section>
 
-      {/* FILTER & GRID */}
+      {/* KATEGORI */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4">
-          {/* Filter */}
-          <div className="flex flex-wrap justify-center gap-3 mb-10">
-            {kategoriList.map((kat) => (
-              <button
-                key={kat}
-                onClick={() => setFilter(kat)}
-                className={`px-5 py-2 rounded-full text-sm font-semibold transition ${
-                  filter === kat
-                    ? "bg-[#1E5FAA] text-white shadow-md"
-                    : "bg-[#F5F9FF] text-[#1E5FAA] hover:bg-[#1E5FAA] hover:text-white"
-                }`}
-              >
-                {kat}
-              </button>
-            ))}
-          </div>
-
-          {/* Info jumlah */}
-          <p className="text-center text-sm text-gray-500 mb-8">
-            Menampilkan <strong className="text-[#1E5FAA]">{filteredItems.length}</strong> foto
-            {filter !== "Semua" && ` dalam kategori "${filter}"`}
-          </p>
-
-          {/* Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {filteredItems.map((item, i) => {
-              const originalIndex = galeriItems.indexOf(item);
-              return (
-                <div
-                  key={i}
-                  onClick={() => setLightbox(originalIndex)}
-                  className={`relative aspect-square rounded-xl overflow-hidden bg-gradient-to-br ${item.warna} group cursor-pointer shadow-md hover:shadow-xl transition-all duration-300`}
-                >
-                  {/* Foto atau emoji placeholder */}
-                  {item.foto ? (
-                    <img
-                      src={item.foto}
-                      alt={item.judul}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                  ) : (
-                    <div className="absolute inset-0 flex items-center justify-center text-6xl md:text-7xl group-hover:scale-110 transition-transform duration-500">
-                      {item.emoji}
-                    </div>
-                  )}
-
-                  {/* Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="text-white">
-                      <div className="font-bold text-sm md:text-base">
-                        {item.judul}
-                      </div>
-                      <div className="text-xs text-gray-300 mt-1">
-                        {item.kategori}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Badge kategori */}
-                  <div className="absolute top-3 left-3 bg-white/90 backdrop-blur text-[#1E5FAA] text-xs font-bold px-2 py-1 rounded-full">
-                    {item.kategori}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Kalau kosong */}
-          {filteredItems.length === 0 && (
-            <div className="text-center py-16">
-              <div className="text-6xl mb-4">📭</div>
-              <p className="text-gray-500">
-                Belum ada foto untuk kategori "{filter}"
-              </p>
-            </div>
-          )}
-
-          {/* Info upload foto */}
-          <div className="mt-12 bg-[#F5F9FF] rounded-xl p-6 max-w-2xl mx-auto text-center">
-            <div className="text-4xl mb-3">📸</div>
-            <h3 className="font-bold text-[#1E5FAA] mb-2">
-              Galeri Foto Segera Bertambah
-            </h3>
-            <p className="text-sm text-gray-600">
-              Kami sedang mengumpulkan dokumentasi kegiatan terbaru. Nantinya
-              galeri ini akan menampilkan foto-foto asli kegiatan siswa
-              di {sekolah.namaSingkat}.
+          <div className="text-center mb-12">
+            <span className="text-[#E63946] font-semibold text-sm uppercase tracking-wider">
+              Kategori Galeri
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#1E5FAA] mt-2 mb-4">
+              Pilih Kategori
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Klik salah satu kategori untuk melihat foto-foto kegiatan.
             </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {kategoriGaleri.map((kat, i) => (
+              <Link
+                key={i}
+                href={`/galeri/${kat.slug}`}
+                className={`group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 bg-gradient-to-br ${kat.warna} aspect-video`}
+              >
+                {/* Emoji besar */}
+                <div className="absolute inset-0 flex items-center justify-center text-7xl md:text-8xl group-hover:scale-110 transition-transform duration-500 opacity-90">
+                  {kat.icon}
+                </div>
+
+                {/* Overlay gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+
+                {/* Konten */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                  <h3 className="text-xl font-bold mb-1">{kat.nama}</h3>
+                  <p className="text-xs text-gray-200 line-clamp-2 mb-3">
+                    {kat.deskripsi}
+                  </p>
+                  <span className="inline-flex items-center gap-1 text-sm font-semibold text-[#FDB913] group-hover:gap-2 transition-all">
+                    Lihat Foto →
+                  </span>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* LIGHTBOX */}
-      {lightbox !== null && (
-        <div
-          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
-          onClick={() => setLightbox(null)}
-        >
-          <div
-            className="relative max-w-4xl w-full"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Tombol Close */}
-            <button
-              onClick={() => setLightbox(null)}
-              className="absolute -top-12 right-0 text-white text-4xl hover:text-[#FDB913] transition"
-              aria-label="Tutup"
-            >
-              ✕
-            </button>
-
-            {/* Konten */}
-            <div
-              className={`aspect-video rounded-2xl bg-gradient-to-br ${galeriItems[lightbox].warna} flex items-center justify-center relative overflow-hidden`}
-            >
-              {galeriItems[lightbox].foto ? (
-                <img
-                  src={galeriItems[lightbox].foto}
-                  alt={galeriItems[lightbox].judul}
-                  className="w-full h-full object-contain"
-                />
-              ) : (
-                <div className="text-9xl">{galeriItems[lightbox].emoji}</div>
-              )}
-            </div>
-
-            {/* Info */}
-            <div className="text-white text-center mt-4">
-              <div className="text-xl font-bold">
-                {galeriItems[lightbox].judul}
-              </div>
-              <div className="text-sm text-gray-300 mt-1">
-                Kategori: {galeriItems[lightbox].kategori}
-              </div>
-            </div>
-
-            {/* Navigasi */}
-            <div className="flex justify-between mt-6">
-              <button
-                onClick={() =>
-                  setLightbox(
-                    lightbox === 0 ? galeriItems.length - 1 : lightbox - 1
-                  )
-                }
-                className="bg-white/10 backdrop-blur hover:bg-white/20 text-white px-6 py-2 rounded-md transition"
-              >
-                ← Sebelumnya
-              </button>
-              <button
-                onClick={() =>
-                  setLightbox(
-                    lightbox === galeriItems.length - 1 ? 0 : lightbox + 1
-                  )
-                }
-                className="bg-white/10 backdrop-blur hover:bg-white/20 text-white px-6 py-2 rounded-md transition"
-              >
-                Selanjutnya →
-              </button>
-            </div>
-
-            <p className="text-center text-xs text-gray-400 mt-4">
-              Klik di luar foto untuk menutup
-            </p>
-          </div>
+      {/* Info */}
+      <section className="py-12 bg-[#F5F9FF]">
+        <div className="max-w-3xl mx-auto px-4 text-center">
+          <div className="text-4xl mb-3">📸</div>
+          <h3 className="font-bold text-[#1E5FAA] mb-2 text-xl">
+            Dokumentasi Terus Bertambah
+          </h3>
+          <p className="text-sm text-gray-600">
+            Kami rutin mengupdate galeri ini dengan momen-momen terbaru dari
+            kegiatan siswa di {sekolah.namaSingkat}.
+          </p>
         </div>
-      )}
+      </section>
 
       {/* CTA */}
       <section className="py-16 bg-gradient-to-br from-[#1E5FAA] to-[#164a85] text-white">
