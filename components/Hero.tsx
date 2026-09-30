@@ -3,113 +3,176 @@ import { sekolah } from "@/lib/data";
 
 export default function Hero() {
   return (
-    <section className="relative bg-gradient-to-br from-[#1E5FAA] via-[#164a85] to-[#0f3a6b] overflow-hidden">
-      {/* Ornamen dekoratif */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-[#FDB913] opacity-10 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-white opacity-5 rounded-full blur-3xl" />
+    <section className="relative bg-[#0F2C4C] overflow-hidden">
+      {/* Pattern halus di background */}
+      <div
+        className="absolute inset-0 opacity-[0.03]"
+        style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
+          backgroundSize: "40px 40px",
+        }}
+      />
 
-      <div className="relative max-w-7xl mx-auto px-4 py-16 md:py-24 grid md:grid-cols-2 gap-12 items-center">
-        {/* Kolom Kiri: Teks */}
-        <div className="text-white text-center md:text-left">
-          <span className="inline-block bg-[#FDB913] text-[#1E5FAA] text-sm font-bold px-4 py-1 rounded-full mb-4">
-            PPDB 2025 / 2026 DIBUKA
-          </span>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4">
-            Selamat Datang di{" "}
-            <span className="text-[#FDB913]">{sekolah.namaSingkat}</span>
+      {/* Gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0F2C4C] via-[#0F2C4C] to-[#1E5FAA]/40" />
+
+      <div className="relative max-w-7xl mx-auto px-6 py-16 md:py-24 grid md:grid-cols-12 gap-12 items-center">
+        {/* KIRI: Teks (7 kolom) */}
+        <div className="md:col-span-7 text-white">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 bg-[#C9A961]/10 border border-[#C9A961]/30 backdrop-blur px-4 py-1.5 rounded-full mb-6">
+            <span className="w-2 h-2 rounded-full bg-[#C9A961] animate-pulse" />
+            <span className="text-[#C9A961] text-xs font-bold uppercase tracking-widest">
+              PPDB 2025 / 2026 Dibuka
+            </span>
+          </div>
+
+          {/* Heading */}
+          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] mb-6 text-white">
+            Mendidik Generasi
+            <br />
+            <span className="text-[#C9A961] italic">Cerdas & Berkarakter</span>
           </h1>
-          <p className="text-lg md:text-xl text-blue-100 mb-8 leading-relaxed">
-            Sekolah Dasar Negeri terakreditasi <strong>{sekolah.akreditasi}</strong> di
-            Kecamatan {sekolah.alamat.kecamatan}, Kabupaten {sekolah.alamat.kabupaten}.
-            Mendidik generasi cerdas, berkarakter, dan berprestasi.
+
+          {/* Deskripsi */}
+          <p className="text-lg text-white/70 leading-relaxed mb-8 max-w-xl">
+            {sekolah.nama} — Sekolah Dasar Negeri terakreditasi{" "}
+            <strong className="text-[#C9A961]">{sekolah.akreditasi}</strong> di
+            Kecamatan {sekolah.alamat.kecamatan}, Kabupaten{" "}
+            {sekolah.alamat.kabupaten}. Berdiri sejak 1985, kami berkomitmen
+            membentuk generasi unggul yang beriman, cerdas, dan berkarakter.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+          {/* Tombol */}
+          <div className="flex flex-col sm:flex-row gap-3 mb-12">
             <Link
               href="/ppdb"
-              className="bg-[#FDB913] text-[#1E5FAA] px-8 py-3 rounded-md font-bold hover:bg-yellow-400 transition shadow-lg"
+              className="bg-[#C9A961] text-[#0F2C4C] px-8 py-4 rounded-lg font-bold hover:bg-[#A88C42] transition-all shadow-lg hover:shadow-xl text-center inline-flex items-center justify-center gap-2 group"
             >
-              📝 Daftar PPDB Sekarang
+              Daftar PPDB Sekarang
+              <span className="group-hover:translate-x-1 transition-transform">→</span>
             </Link>
             <Link
               href="/profil"
-              className="bg-white/10 backdrop-blur border-2 border-white/30 text-white px-8 py-3 rounded-md font-bold hover:bg-white/20 transition"
+              className="bg-white/5 backdrop-blur border border-white/20 text-white px-8 py-4 rounded-lg font-semibold hover:bg-white/10 transition-all text-center"
             >
               Kenali Sekolah Kami
             </Link>
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-3 gap-4 mt-10 pt-8 border-t border-white/20">
+          <div className="grid grid-cols-3 gap-6 pt-8 border-t border-white/10 max-w-lg">
             <div>
-              <div className="text-3xl font-bold text-[#FDB913]">
+              <div className="font-serif text-4xl font-bold text-[#C9A961]">
                 {sekolah.akreditasi}
               </div>
-              <div className="text-sm text-blue-100">Akreditasi</div>
+              <div className="text-xs uppercase tracking-wider text-white/50 mt-1">
+                Akreditasi
+              </div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-[#FDB913]">6</div>
-              <div className="text-sm text-blue-100">Kelas</div>
+              <div className="font-serif text-4xl font-bold text-[#C9A961]">
+                12
+              </div>
+              <div className="text-xs uppercase tracking-wider text-white/50 mt-1">
+                Guru & Staf
+              </div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-[#FDB913]">100%</div>
-              <div className="text-sm text-blue-100">Gratis</div>
+              <div className="font-serif text-4xl font-bold text-[#C9A961]">
+                40+
+              </div>
+              <div className="text-xs uppercase tracking-wider text-white/50 mt-1">
+                Tahun Mendidik
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Kolom Kanan: Kartu PPDB */}
-        <div className="relative">
-          <div className="bg-white rounded-2xl shadow-2xl p-6 md:p-8 relative">
-            {/* Badge */}
-            <div className="absolute -top-4 -right-4 bg-[#E63946] text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg rotate-6">
-              GRATIS!
-            </div>
+        {/* KANAN: Kartu Info (5 kolom) */}
+        <div className="md:col-span-5">
+          <div className="relative">
+            {/* Ornamen sudut */}
+            <div className="absolute -top-3 -left-3 w-20 h-20 border-t-2 border-l-2 border-[#C9A961]" />
+            <div className="absolute -bottom-3 -right-3 w-20 h-20 border-b-2 border-r-2 border-[#C9A961]" />
 
-            <h2 className="text-2xl font-bold text-[#1E5FAA] mb-2">
-              SPMB / PPDB 2025
-            </h2>
-            <p className="text-gray-500 text-sm mb-6">
-              Sistem Penerimaan Murid Baru
-            </p>
+            {/* Card */}
+            <div className="bg-white rounded-2xl p-8 shadow-2xl">
+              <div className="text-center mb-6">
+                <div className="text-xs uppercase tracking-widest text-[#C9A961] font-bold mb-2">
+                  SPMB 2025 / 2026
+                </div>
+                <h2 className="font-serif text-2xl font-bold text-[#0F2C4C] mb-1">
+                  Penerimaan Murid Baru
+                </h2>
+                <p className="text-xs text-gray-500">
+                  Pendaftaran dibuka sampai 30 Juni 2025
+                </p>
+              </div>
 
-            {/* Info Pendaftaran */}
-            <div className="space-y-3 mb-6">
-              <div className="flex items-start gap-3 text-sm">
-                <span className="text-[#1E5FAA] text-lg">📅</span>
-                <div>
-                  <div className="font-semibold text-gray-700">Pendaftaran</div>
-                  <div className="text-gray-500">1 - 30 Juni 2025</div>
-                </div>
+              {/* Divider */}
+              <div className="flex items-center gap-3 mb-6">
+                <div className="flex-1 h-px bg-[#E5E1D8]" />
+                <span className="text-[#C9A961] text-xs">◆</span>
+                <div className="flex-1 h-px bg-[#E5E1D8]" />
               </div>
-              <div className="flex items-start gap-3 text-sm">
-                <span className="text-[#1E5FAA] text-lg">👶</span>
-                <div>
-                  <div className="font-semibold text-gray-700">Usia Minimal</div>
-                  <div className="text-gray-500">6 tahun per 1 Juli 2025</div>
+
+              {/* Info list */}
+              <div className="space-y-4 mb-8">
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-[#FAF8F3] flex items-center justify-center text-sm flex-shrink-0">
+                    📅
+                  </div>
+                  <div>
+                    <div className="text-xs uppercase tracking-wider text-gray-400 font-semibold">
+                      Pendaftaran
+                    </div>
+                    <div className="text-sm font-semibold text-[#0F2C4C]">
+                      1 Juni - 30 Juni 2025
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-start gap-3 text-sm">
-                <span className="text-[#1E5FAA] text-lg">📋</span>
-                <div>
-                  <div className="font-semibold text-gray-700">Syarat</div>
-                  <div className="text-gray-500">
-                    KK, Akta Lahir, Ijazah TK, Foto 3x4
+
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-[#FAF8F3] flex items-center justify-center text-sm flex-shrink-0">
+                    👶
+                  </div>
+                  <div>
+                    <div className="text-xs uppercase tracking-wider text-gray-400 font-semibold">
+                      Usia Minimal
+                    </div>
+                    <div className="text-sm font-semibold text-[#0F2C4C]">
+                      6 tahun per 1 Juli 2025
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-[#FAF8F3] flex items-center justify-center text-sm flex-shrink-0">
+                    💰
+                  </div>
+                  <div>
+                    <div className="text-xs uppercase tracking-wider text-gray-400 font-semibold">
+                      Biaya Pendaftaran
+                    </div>
+                    <div className="text-sm font-bold text-[#C9A961]">
+                      GRATIS
+                    </div>
                   </div>
                 </div>
               </div>
+
+              <Link
+                href="/ppdb"
+                className="block w-full bg-[#0F2C4C] text-white text-center py-4 rounded-lg font-bold hover:bg-[#1E5FAA] transition-colors shadow-lg"
+              >
+                Daftar Online →
+              </Link>
+
+              <p className="text-center text-xs text-gray-400 mt-4">
+                Info: {sekolah.telepon}
+              </p>
             </div>
-
-            <Link
-              href="/ppdb"
-              className="block w-full bg-[#1E5FAA] text-white text-center py-3 rounded-md font-bold hover:bg-[#164a85] transition"
-            >
-              Daftar Online →
-            </Link>
-
-            <p className="text-xs text-center text-gray-400 mt-3">
-              Info: {sekolah.telepon}
-            </p>
           </div>
         </div>
       </div>
@@ -124,7 +187,7 @@ export default function Hero() {
         >
           <path
             d="M0 80L60 74.7C120 69.3 240 58.7 360 53.3C480 48 600 48 720 53.3C840 58.7 960 69.3 1080 69.3C1200 69.3 1320 58.7 1380 53.3L1440 48V80H1380C1320 80 1200 80 1080 80C960 80 840 80 720 80C600 80 480 80 360 80C240 80 120 80 60 80H0Z"
-            fill="#F5F9FF"
+            fill="#FAF8F3"
           />
         </svg>
       </div>

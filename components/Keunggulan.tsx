@@ -2,16 +2,22 @@ import { keunggulan } from "@/lib/data";
 
 export default function Keunggulan() {
   return (
-    <section className="py-16 md:py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4">
+    <section className="py-20 md:py-28 bg-white">
+      <div className="max-w-7xl mx-auto px-6">
         {/* Judul Section */}
-        <div className="text-center mb-12">
-          <span className="text-[#E63946] font-semibold text-sm uppercase tracking-wider">
+        <div className="text-center mb-16">
+          <span className="text-[#C9A961] font-bold text-xs uppercase tracking-[0.2em]">
             Keunggulan Kami
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#1E5FAA] mt-2 mb-4">
-            Mengapa Memilih SDN 3 Pelang?
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#0F2C4C] mt-3 mb-4">
+            Mengapa Memilih{" "}
+            <span className="italic text-[#C9A961]">SDN 3 Pelang?</span>
           </h2>
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="w-12 h-0.5 bg-[#C9A961]" />
+            <span className="text-[#C9A961] text-xs">◆</span>
+            <div className="w-12 h-0.5 bg-[#C9A961]" />
+          </div>
           <p className="text-gray-600 max-w-2xl mx-auto">
             Kami menghadirkan pendidikan dasar berkualitas dengan pendekatan
             menyeluruh untuk tumbuh kembang putra-putri Anda.
@@ -23,25 +29,30 @@ export default function Keunggulan() {
           {keunggulan.map((item, i) => (
             <div
               key={i}
-              className="group bg-[#F5F9FF] p-6 rounded-xl border border-blue-100 hover:border-[#1E5FAA] hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+              className="group bg-[#FAF8F3] p-8 rounded-2xl hover:bg-[#0F2C4C] transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
             >
+              {/* Nomor dekoratif */}
+              <div className="text-[#C9A961]/30 font-serif text-5xl font-bold mb-2 group-hover:text-[#C9A961]/60 transition-colors">
+                0{i + 1}
+              </div>
+
               {/* Ikon */}
-              <div className="w-14 h-14 rounded-xl bg-[#1E5FAA] flex items-center justify-center text-3xl mb-4 group-hover:bg-[#FDB913] transition-colors duration-300">
+              <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
                 {item.icon}
               </div>
 
               {/* Judul */}
-              <h3 className="text-lg font-bold text-[#1E5FAA] mb-2">
+              <h3 className="font-serif text-lg font-bold text-[#0F2C4C] mb-3 group-hover:text-white transition-colors leading-snug">
                 {item.judul}
               </h3>
 
+              {/* Garis dekoratif */}
+              <div className="w-10 h-0.5 bg-[#C9A961] mb-3 group-hover:w-16 transition-all duration-300" />
+
               {/* Deskripsi */}
-              <p className="text-gray-600 text-sm leading-relaxed">
+              <p className="text-gray-600 text-sm leading-relaxed group-hover:text-white/70 transition-colors">
                 {item.deskripsi}
               </p>
-
-              {/* Garis bawah dekoratif */}
-              <div className="w-12 h-1 bg-[#FDB913] mt-4 group-hover:w-20 transition-all duration-300" />
             </div>
           ))}
         </div>

@@ -1,35 +1,61 @@
 @import "tailwindcss";
 
 :root {
-  --primary: #1E5FAA;
-  --primary-dark: #164a85;
-  --secondary: #FDB913;
-  --accent: #E63946;
-  --bg: #F5F9FF;
+  --primary: #0F2C4C;
+  --primary-light: #1E5FAA;
+  --accent: #C9A961;
+  --accent-dark: #A88C42;
+  --bg: #FAF8F3;
+  --bg-alt: #F5F3EE;
   --text: #1A1A1A;
+  --text-muted: #6B6B6B;
+  --border: #E5E1D8;
 }
 
 @theme inline {
-  --color-primary: #1E5FAA;
-  --color-primary-dark: #164a85;
-  --color-secondary: #FDB913;
-  --color-accent: #E63946;
-  --color-bg: #F5F9FF;
+  --color-primary: #0F2C4C;
+  --color-primary-light: #1E5FAA;
+  --color-accent: #C9A961;
+  --color-accent-dark: #A88C42;
+  --color-bg: #FAF8F3;
+  --color-bg-alt: #F5F3EE;
+  --color-border: #E5E1D8;
   --font-sans: var(--font-inter);
   --font-heading: var(--font-jakarta);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 body {
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-inter), system-ui, sans-serif;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-jakarta), system-ui, sans-serif;
+  font-family: var(--font-playfair), var(--font-jakarta), serif;
   font-weight: 700;
+  color: var(--primary);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
 }
-html, body {
-  overflow-x: hidden;
-  max-width: 100%;
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection warna */
+::selection {
+  background: var(--accent);
+  color: var(--primary);
 }
