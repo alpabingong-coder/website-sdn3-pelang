@@ -66,18 +66,18 @@ export const profil = {
 };
 
 export const guru = [
-  { nama: "Khumaida, S.Pd", jabatan: "Kepala Sekolah", warna: "from-blue-600 to-blue-800", foto: "" },
-  { nama: "Misky Dwi Apriliani, S.Pd", jabatan: "Guru Kelas 1", warna: "from-pink-500 to-pink-700", foto: "" },
-  { nama: "Umroh, S.Pd", jabatan: "Guru Kelas 2", warna: "from-purple-500 to-purple-700", foto: "" },
-  { nama: "Yuni Rindyastuti, S.Pd", jabatan: "Guru Kelas 3", warna: "from-emerald-500 to-emerald-700", foto: "" },
-  { nama: "Hilman Nugroho Amirullah, S.Pd", jabatan: "Guru Kelas 4A", warna: "from-orange-500 to-orange-700", foto: "" },
-  { nama: "Suwarno, S.Pd", jabatan: "Guru Kelas 4B", warna: "from-red-500 to-red-700", foto: "" },
-  { nama: "Dody Minanto Utomo, S.Pd", jabatan: "Guru Kelas 5", warna: "from-cyan-500 to-cyan-700", foto: "" },
-  { nama: "Shofiatul Mahrida, S.Pd", jabatan: "Guru Kelas 6A", warna: "from-indigo-500 to-indigo-700", foto: "" },
-  { nama: "Iliyin Dorujatil'ulya, S.Pd", jabatan: "Guru Kelas 6B", warna: "from-rose-500 to-rose-700", foto: "" },
-  { nama: "Ngateni, S.Pd.I", jabatan: "Guru Agama Islam", warna: "from-teal-500 to-teal-700", foto: "" },
-  { nama: "Hilman Abdillah, S.Pd", jabatan: "Guru Olahraga", warna: "from-lime-500 to-lime-700", foto: "" },
-  { nama: "Kiki, S.Pd", jabatan: "Guru Bahasa Inggris", warna: "from-fuchsia-500 to-fuchsia-700", foto: "" },
+  { nama: "Khumaida, S.Pd", jabatan: "Kepala Sekolah", warna: "from-blue-600 to-blue-800", foto: "/images/guru/khumaida.jpg" },
+  { nama: "Misky Dwi Apriliani, S.Pd", jabatan: "Guru Kelas 1", warna: "from-pink-500 to-pink-700", foto: "/images/guru/misky.jpg" },
+  { nama: "Umroh, S.Pd", jabatan: "Guru Kelas 2", warna: "from-purple-500 to-purple-700", foto: "/images/guru/umroh.jpg" },
+  { nama: "Yuni Rindyastuti, S.Pd", jabatan: "Guru Kelas 3", warna: "from-emerald-500 to-emerald-700", foto: "/images/guru/yuni.jpg" },
+  { nama: "Hilman Nugroho Amirullah, S.Pd", jabatan: "Guru Kelas 4A", warna: "from-orange-500 to-orange-700", foto: "/images/guru/hilman-n.jpg" },
+  { nama: "Suwarno, S.Pd", jabatan: "Guru Kelas 4B", warna: "from-red-500 to-red-700", foto: "/images/guru/suwarno.jpg" },
+  { nama: "Dody Minanto Utomo, S.Pd", jabatan: "Guru Kelas 5", warna: "from-cyan-500 to-cyan-700", foto: "/images/guru/dody.jpg" },
+  { nama: "Shofiatul Mahrida, S.Pd", jabatan: "Guru Kelas 6A", warna: "from-indigo-500 to-indigo-700", foto: "/images/guru/shofiatul.jpg" },
+  { nama: "Iliyin Dorujatil'ulya, S.Pd", jabatan: "Guru Kelas 6B", warna: "from-rose-500 to-rose-700", foto: "/images/guru/iliyin.jpg" },
+  { nama: "Ngateni, S.Pd.I", jabatan: "Guru Agama Islam", warna: "from-teal-500 to-teal-700", foto: "/images/guru/ngateni.jpg" },
+  { nama: "Hilman Abdillah, S.Pd", jabatan: "Guru Olahraga", warna: "from-lime-500 to-lime-700", foto: "/images/guru/hilman-a.jpg" },
+  { nama: "Kiki, S.Pd", jabatan: "Guru Bahasa Inggris", warna: "from-fuchsia-500 to-fuchsia-700", foto: "/images/guru/kiki.jpg" },
 ];
 
 export const fasilitas = [
@@ -324,6 +324,7 @@ export const galeri = {
     },
   ],
 };
+
 // ============================================
 // DATA ARTIKEL / BERITA
 // ============================================
