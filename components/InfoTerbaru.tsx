@@ -8,7 +8,6 @@ const artikel = [
     kategori: "Pengumuman",
     ringkasan:
       "Pendaftaran peserta didik baru SDN 3 Pelang tahun ajaran 2025/2026 resmi dibuka mulai 1 Juli 2025.",
-    warna: "from-blue-500 to-blue-700",
   },
   {
     emoji: "🏆",
@@ -17,7 +16,6 @@ const artikel = [
     kategori: "Prestasi",
     ringkasan:
       "Membanggakan! Tim cerdas cermat SDN 3 Pelang berhasil menyabet juara 1 tingkat kecamatan.",
-    warna: "from-yellow-500 to-orange-600",
   },
   {
     emoji: "🌱",
@@ -26,25 +24,30 @@ const artikel = [
     kategori: "Kegiatan",
     ringkasan:
       "Puluhan siswa mengikuti kegiatan perkemahan Pramuka di lingkungan sekolah dengan penuh semangat.",
-    warna: "from-green-500 to-emerald-700",
   },
 ];
 
 export default function InfoTerbaru() {
   return (
-    <section className="py-16 md:py-24 bg-[#F5F9FF]">
-      <div className="max-w-7xl mx-auto px-4">
+    <section className="py-20 md:py-28 bg-[#FAF8F3]">
+      <div className="max-w-7xl mx-auto px-6">
         {/* Judul Section */}
-        <div className="text-center mb-12">
-          <span className="text-[#E63946] font-semibold text-sm uppercase tracking-wider">
+        <div className="text-center mb-16">
+          <span className="text-[#C9A961] font-bold text-xs uppercase tracking-[0.2em]">
             Info Terbaru
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#1E5FAA] mt-2 mb-4">
-            Berita, Kegiatan, dan Prestasi
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#0F2C4C] mt-3 mb-4">
+            Berita, Kegiatan, &{" "}
+            <span className="italic text-[#C9A961]">Prestasi</span>
           </h2>
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="w-12 h-0.5 bg-[#C9A961]" />
+            <span className="text-[#C9A961] text-xs">◆</span>
+            <div className="w-12 h-0.5 bg-[#C9A961]" />
+          </div>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Ikuti kabar terbaru seputar kegiatan dan prestasi siswa-siswi
-            SDN 3 Pelang.
+            Ikuti kabar terbaru seputar kegiatan dan prestasi siswa-siswi SDN 3
+            Pelang.
           </p>
         </div>
 
@@ -54,41 +57,46 @@ export default function InfoTerbaru() {
             {artikel.map((item, i) => (
               <article
                 key={i}
-                className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition group flex flex-col sm:flex-row"
+                className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col sm:flex-row border border-[#E5E1D8] hover:border-[#C9A961] group"
               >
                 {/* Thumbnail */}
-                <div
-                  className={`sm:w-48 aspect-video sm:aspect-square bg-gradient-to-br ${item.warna} flex items-center justify-center text-6xl flex-shrink-0 group-hover:scale-105 transition-transform duration-300`}
-                >
-                  {item.emoji}
+                <div className="sm:w-48 aspect-video sm:aspect-square bg-gradient-to-br from-[#0F2C4C] to-[#1E5FAA] flex items-center justify-center text-5xl flex-shrink-0 relative overflow-hidden">
+                  <div className="text-6xl group-hover:scale-110 transition-transform duration-500">
+                    {item.emoji}
+                  </div>
+                  {/* Ornamen sudut */}
+                  <div className="absolute top-3 right-3 w-6 h-6 border-t border-r border-[#C9A961]/50" />
                 </div>
 
                 {/* Konten */}
-                <div className="p-5 flex-1">
+                <div className="p-6 flex-1">
                   {/* Badge Kategori + Tanggal */}
-                  <div className="flex items-center gap-3 mb-2 text-xs">
-                    <span className="bg-[#F5F9FF] text-[#1E5FAA] font-semibold px-2 py-1 rounded">
+                  <div className="flex items-center gap-3 mb-3 text-xs">
+                    <span className="bg-[#C9A961]/10 text-[#C9A961] font-bold px-2.5 py-1 rounded uppercase tracking-wider">
                       {item.kategori}
                     </span>
-                    <span className="text-gray-400">📅 {item.tanggal}</span>
+                    <span className="text-gray-400">
+                      {item.tanggal}
+                    </span>
                   </div>
 
                   {/* Judul */}
-                  <h3 className="text-lg font-bold text-[#1E5FAA] mb-2 group-hover:text-[#E63946] transition leading-snug">
+                  <h3 className="font-serif text-lg font-bold text-[#0F2C4C] mb-3 group-hover:text-[#C9A961] transition leading-snug">
                     <Link href="/artikel">{item.judul}</Link>
                   </h3>
 
                   {/* Ringkasan */}
-                  <p className="text-gray-600 text-sm leading-relaxed mb-3">
+                  <p className="text-gray-600 text-sm leading-relaxed mb-4">
                     {item.ringkasan}
                   </p>
 
                   {/* Link Baca */}
                   <Link
                     href="/artikel"
-                    className="text-[#E63946] text-sm font-semibold inline-flex items-center gap-1 hover:gap-2 transition-all"
+                    className="text-[#C9A961] text-sm font-bold inline-flex items-center gap-1 hover:gap-2 transition-all"
                   >
-                    Baca selengkapnya →
+                    Baca selengkapnya
+                    <span>→</span>
                   </Link>
                 </div>
               </article>
@@ -98,26 +106,30 @@ export default function InfoTerbaru() {
           {/* Sidebar Kanan */}
           <aside className="space-y-6">
             {/* Search */}
-            <div className="bg-white p-5 rounded-xl shadow-sm">
-              <h3 className="font-bold text-[#1E5FAA] mb-3">🔍 Pencarian</h3>
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-[#E5E1D8]">
+              <h3 className="font-serif font-bold text-[#0F2C4C] mb-4 flex items-center gap-2">
+                <span className="text-[#C9A961]">🔍</span>
+                Pencarian
+              </h3>
               <div className="flex">
                 <input
                   type="text"
                   placeholder="Cari berita..."
-                  className="flex-1 border border-gray-200 rounded-l-md px-3 py-2 text-sm focus:outline-none focus:border-[#1E5FAA]"
+                  className="flex-1 border border-[#E5E1D8] rounded-l-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#C9A961]"
                 />
-                <button className="bg-[#1E5FAA] text-white px-4 rounded-r-md hover:bg-[#164a85] transition text-sm">
+                <button className="bg-[#0F2C4C] text-white px-4 rounded-r-lg hover:bg-[#1E5FAA] transition text-sm font-semibold">
                   Cari
                 </button>
               </div>
             </div>
 
             {/* Sosmed */}
-            <div className="bg-white p-5 rounded-xl shadow-sm">
-              <h3 className="font-bold text-[#1E5FAA] mb-3">
-                📱 Ikuti Kami
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-[#E5E1D8]">
+              <h3 className="font-serif font-bold text-[#0F2C4C] mb-4 flex items-center gap-2">
+                <span className="text-[#C9A961]">◆</span>
+                Ikuti Kami
               </h3>
-              <p className="text-gray-500 text-sm mb-3">
+              <p className="text-gray-500 text-sm mb-4">
                 Follow social media sekolah untuk update terbaru.
               </p>
               <div className="flex gap-2">
@@ -125,7 +137,7 @@ export default function InfoTerbaru() {
                   <a
                     key={i}
                     href="#"
-                    className="w-10 h-10 rounded-full bg-[#F5F9FF] hover:bg-[#1E5FAA] hover:text-white transition flex items-center justify-center text-lg"
+                    className="w-10 h-10 rounded-lg bg-[#FAF8F3] hover:bg-[#0F2C4C] hover:text-[#C9A961] transition-all flex items-center justify-center text-lg"
                   >
                     {icon}
                   </a>
@@ -134,11 +146,12 @@ export default function InfoTerbaru() {
             </div>
 
             {/* Menu Prioritas */}
-            <div className="bg-white p-5 rounded-xl shadow-sm">
-              <h3 className="font-bold text-[#1E5FAA] mb-3">
-                ⭐ Menu Prioritas
+            <div className="bg-gradient-to-br from-[#0F2C4C] to-[#164a85] p-6 rounded-2xl text-white shadow-lg">
+              <h3 className="font-serif font-bold mb-4 flex items-center gap-2">
+                <span className="text-[#C9A961]">◆</span>
+                Menu Prioritas
               </h3>
-              <ul className="space-y-2 text-sm">
+              <ul className="space-y-3 text-sm">
                 {[
                   { label: "Info PPDB 2025", href: "/ppdb" },
                   { label: "Program Unggulan", href: "/program" },
@@ -148,9 +161,11 @@ export default function InfoTerbaru() {
                   <li key={i}>
                     <Link
                       href={item.href}
-                      className="flex items-center gap-2 text-gray-600 hover:text-[#1E5FAA] transition"
+                      className="flex items-center gap-2 text-white/80 hover:text-[#C9A961] transition group"
                     >
-                      <span className="text-[#FDB913]">›</span>
+                      <span className="text-[#C9A961] group-hover:translate-x-1 transition-transform">
+                        ›
+                      </span>
                       {item.label}
                     </Link>
                   </li>
@@ -161,12 +176,13 @@ export default function InfoTerbaru() {
         </div>
 
         {/* Tombol Lihat Semua */}
-        <div className="text-center mt-10">
+        <div className="text-center mt-12">
           <Link
             href="/artikel"
-            className="inline-flex items-center gap-2 bg-[#1E5FAA] text-white px-6 py-3 rounded-md font-semibold hover:bg-[#164a85] transition"
+            className="inline-flex items-center gap-2 bg-[#0F2C4C] text-white px-7 py-3.5 rounded-lg font-semibold hover:bg-[#1E5FAA] transition-all shadow-md hover:shadow-lg group"
           >
-            Lihat Semua Artikel →
+            Lihat Semua Artikel
+            <span className="group-hover:translate-x-1 transition-transform">→</span>
           </Link>
         </div>
       </div>
