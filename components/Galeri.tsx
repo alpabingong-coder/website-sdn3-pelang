@@ -1,25 +1,71 @@
 import Link from "next/link";
 
 const galeriItems = [
-  { emoji: "🎒", judul: "Upacara Bendera", kategori: "Upacara" },
-  { emoji: "📚", judul: "Kegiatan Belajar", kategori: "Belajar" },
-  { emoji: "⚽", judul: "Olahraga", kategori: "Olahraga" },
-  { emoji: "🎨", judul: "Seni & Kreativitas", kategori: "Seni" },
-  { emoji: "🎭", judul: "Pentas Seni", kategori: "Seni" },
-  { emoji: "🏆", judul: "Lomba & Prestasi", kategori: "Prestasi" },
-  { emoji: "🌱", judul: "Pramuka", kategori: "Pramuka" },
-  { emoji: "📖", judul: "Perpustakaan", kategori: "Belajar" },
+  { 
+    emoji: "🎒", 
+    judul: "Upacara Bendera", 
+    kategori: "Upacara", 
+    bg: "bg-blue-100", 
+    iconBg: "bg-blue-500",
+    textColor: "text-blue-700"
+  },
+  { 
+    emoji: "📚", 
+    judul: "Kegiatan Belajar", 
+    kategori: "Belajar", 
+    bg: "bg-emerald-100", 
+    iconBg: "bg-emerald-500",
+    textColor: "text-emerald-700"
+  },
+  { 
+    emoji: "⚽", 
+    judul: "Olahraga", 
+    kategori: "Olahraga", 
+    bg: "bg-orange-100", 
+    iconBg: "bg-orange-500",
+    textColor: "text-orange-700"
+  },
+  { 
+    emoji: "🎨", 
+    judul: "Seni & Kreativitas", 
+    kategori: "Seni", 
+    bg: "bg-pink-100", 
+    iconBg: "bg-pink-500",
+    textColor: "text-pink-700"
+  },
+  { 
+    emoji: "🎭", 
+    judul: "Pentas Seni", 
+    kategori: "Seni", 
+    bg: "bg-purple-100", 
+    iconBg: "bg-purple-500",
+    textColor: "text-purple-700"
+  },
+  { 
+    emoji: "🏆", 
+    judul: "Lomba & Prestasi", 
+    kategori: "Prestasi", 
+    bg: "bg-yellow-100", 
+    iconBg: "bg-yellow-500",
+    textColor: "text-yellow-700"
+  },
+  { 
+    emoji: "🌱", 
+    judul: "Pramuka", 
+    kategori: "Pramuka", 
+    bg: "bg-green-100", 
+    iconBg: "bg-green-500",
+    textColor: "text-green-700"
+  },
+  { 
+    emoji: "📖", 
+    judul: "Perpustakaan", 
+    kategori: "Belajar", 
+    bg: "bg-cyan-100", 
+    iconBg: "bg-cyan-500",
+    textColor: "text-cyan-700"
+  },
 ];
-
-// Mapping kategori ke warna navy/gold palette
-const warnaKategori: Record<string, { bg: string; accent: string }> = {
-  Upacara: { bg: "from-[#0F2C4C] to-[#1E5FAA]", accent: "#C9A961" },
-  Belajar: { bg: "from-[#1E5FAA] to-[#0F2C4C]", accent: "#C9A961" },
-  Olahraga: { bg: "from-[#0F2C4C] to-[#164a85]", accent: "#C9A961" },
-  Seni: { bg: "from-[#164a85] to-[#0F2C4C]", accent: "#C9A961" },
-  Prestasi: { bg: "from-[#C9A961] to-[#A88C42]", accent: "#0F2C4C" },
-  Pramuka: { bg: "from-[#0F2C4C] to-[#1E5FAA]", accent: "#C9A961" },
-};
 
 export default function Galeri() {
   return (
@@ -27,70 +73,63 @@ export default function Galeri() {
       <div className="max-w-7xl mx-auto px-6">
         {/* Judul Section */}
         <div className="text-center mb-16">
-          <span className="text-[#C9A961] font-bold text-xs uppercase tracking-[0.2em]">
+          <span className="inline-block bg-blue-100 text-blue-700 text-xs font-bold px-4 py-2 rounded-full uppercase tracking-wider mb-4">
             Galeri Kegiatan
           </span>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#0F2C4C] mt-3 mb-4">
+          <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 mt-3 mb-4">
             Momen Berharga di{" "}
-            <span className="italic text-[#C9A961]">Sekolah Kami</span>
+            <span className="text-gradient">Sekolah Kami</span>
           </h2>
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="w-12 h-0.5 bg-[#C9A961]" />
-            <span className="text-[#C9A961] text-xs">◆</span>
-            <div className="w-12 h-0.5 bg-[#C9A961]" />
-          </div>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto font-medium">
             Berbagai kegiatan seru dan mendidik yang kami lakukan bersama
             siswa-siswi SDN 3 Pelang.
           </p>
         </div>
 
-        {/* Grid Foto */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {galeriItems.map((item, i) => {
-            const warna =
-              warnaKategori[item.kategori] || warnaKategori.Upacara;
-            return (
-              <Link
-                key={i}
-                href="/galeri"
-                className={`relative aspect-square rounded-2xl overflow-hidden bg-gradient-to-br ${warna.bg} group cursor-pointer shadow-md hover:shadow-2xl transition-all duration-500`}
-              >
-                {/* Emoji */}
-                <div className="absolute inset-0 flex items-center justify-center text-6xl md:text-7xl group-hover:scale-110 transition-transform duration-500">
-                  {item.emoji}
-                </div>
+        {/* Grid Galeri — Bento Style */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
+          {galeriItems.map((item, i) => (
+            <Link
+              key={i}
+              href="/galeri"
+              className={`group ${item.bg} rounded-3xl p-6 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 cursor-pointer relative overflow-hidden`}
+            >
+              {/* Blob dekoratif */}
+              <div className="absolute -top-8 -right-8 w-24 h-24 rounded-full bg-white/40 blur-xl group-hover:scale-150 transition-transform duration-700" />
 
-                {/* Overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-4">
-                  <div className="text-white">
-                    <div className="font-serif font-bold text-sm md:text-base leading-tight">
-                      {item.judul}
-                    </div>
-                    <div
-                      className="text-xs mt-1 font-semibold"
-                      style={{ color: warna.accent }}
-                    >
-                      {item.kategori}
-                    </div>
-                  </div>
-                </div>
+              {/* Icon circle */}
+              <div className={`relative w-16 h-16 md:w-20 md:h-20 rounded-2xl ${item.iconBg} flex items-center justify-center text-3xl md:text-4xl mb-4 shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-500`}>
+                {item.emoji}
+              </div>
 
-                {/* Ornamen sudut gold */}
-                <div className="absolute top-3 right-3 w-6 h-6 border-t border-r border-[#C9A961]/50 opacity-0 group-hover:opacity-100 transition-opacity" />
-              </Link>
-            );
-          })}
+              {/* Judul */}
+              <h3 className="font-heading text-base md:text-lg font-extrabold text-slate-900 mb-2 leading-tight">
+                {item.judul}
+              </h3>
+
+              {/* Kategori pill */}
+              <span className={`inline-block ${item.textColor} bg-white/60 backdrop-blur text-xs font-bold px-3 py-1 rounded-full`}>
+                {item.kategori}
+              </span>
+
+              {/* Arrow kecil */}
+              <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className={`w-8 h-8 rounded-full ${item.iconBg} flex items-center justify-center text-white text-sm`}>
+                  →
+                </div>
+              </div>
+            </Link>
+          ))}
         </div>
 
         {/* Tombol bawah */}
         <div className="text-center mt-12">
           <Link
             href="/galeri"
-            className="inline-flex items-center gap-2 bg-[#0F2C4C] text-white px-7 py-3.5 rounded-lg font-semibold hover:bg-[#1E5FAA] transition-all shadow-md hover:shadow-lg group"
+            className="btn-primary inline-flex items-center gap-2"
           >
             Lihat Galeri Lengkap
-            <span className="group-hover:translate-x-1 transition-transform">→</span>
+            <span>→</span>
           </Link>
         </div>
       </div>

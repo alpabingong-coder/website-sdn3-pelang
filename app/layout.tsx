@@ -1,30 +1,26 @@
 import type { Metadata } from "next";
-import { Inter, Plus_Jakarta_Sans, Playfair_Display } from "next/font/google";
+import { Plus_Jakarta_Sans, Nunito_Sans } from "next/font/google";
 import "./globals.css";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
+import { ScrollProgress, MouseSpotlight } from "@/components/Animate";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-jakarta",
   display: "swap",
+  weight: ["500", "600", "700", "800"],
 });
 
-const playfair = Playfair_Display({
+const nunito = Nunito_Sans({
   subsets: ["latin"],
-  variable: "--font-playfair",
+  variable: "--font-nunito",
   display: "swap",
-  weight: ["400", "600", "700", "900"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
-  title: "SD Negeri 3 Pelang | Website Resmi",
+  title: "SD Negeri 3 Pelang | Sekolah Dasar Modern dan Berkarakter",
   description:
-    "Website resmi SD Negeri 3 Pelang, Kecamatan Mayong, Kabupaten Jepara. Informasi PPDB, program unggulan, galeri kegiatan, dan berita terbaru.",
+    "Website resmi SD Negeri 3 Pelang, Kecamatan Mayong, Kabupaten Jepara. Temukan informasi profil sekolah, program akademik, kegiatan, fasilitas, berita, dan PPDB.",
   keywords: [
     "SD Negeri 3 Pelang",
     "SDN 3 Pelang",
@@ -32,6 +28,13 @@ export const metadata: Metadata = {
     "PPDB Jepara",
     "SD Mayong",
   ],
+  openGraph: {
+    title: "SD Negeri 3 Pelang | Sekolah Dasar Modern dan Berkarakter",
+    description:
+      "Website resmi SD Negeri 3 Pelang. Informasi PPDB, program unggulan, galeri kegiatan, dan berita terbaru.",
+    type: "website",
+    locale: "id_ID",
+  },
 };
 
 export default function RootLayout({
@@ -42,9 +45,13 @@ export default function RootLayout({
   return (
     <html
       lang="id"
-      className={`${inter.variable} ${jakarta.variable} ${playfair.variable}`}
+      className={`${jakarta.variable} ${nunito.variable}`}
     >
-      <body className="antialiased">{children}</body>
+      <body className="antialiased relative">
+        <ScrollProgress />
+        <MouseSpotlight />
+        {children}
+      </body>
     </html>
   );
 }

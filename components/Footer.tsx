@@ -5,76 +5,84 @@ export default function Footer() {
   const tahun = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#0F2C4C] text-white">
+    <footer className="bg-slate-900 text-white">
       {/* CTA BANNER */}
-      <div className="border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="text-center md:text-left">
-            <h3 className="font-serif text-2xl md:text-3xl font-bold mb-2">
-              Siap Bergabung dengan{" "}
-              <span className="italic text-[#C9A961]">
-                {sekolah.namaSingkat}?
-              </span>
-            </h3>
-            <p className="text-white/60">
-              Daftarkan putra-putri Anda sekarang. Pendaftaran GRATIS!
-            </p>
+      <div className="max-w-7xl mx-auto px-6 py-12">
+        <div className="relative bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 rounded-3xl p-8 md:p-12 overflow-hidden">
+          <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-white/20 blur-2xl" />
+          <div className="absolute -bottom-10 -left-10 w-40 h-40 rounded-full bg-white/20 blur-2xl" />
+
+          <div className="relative flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="text-center md:text-left">
+              <h3 className="font-heading text-2xl md:text-3xl font-extrabold text-white mb-2">
+                Siap Bergabung dengan{" "}
+                <span className="text-yellow-300">SDN 3 Pelang?</span>
+              </h3>
+              <p className="text-white font-medium">
+                Daftarkan putra-putri Anda sekarang. Pendaftaran GRATIS!
+              </p>
+            </div>
+            <Link
+              href="/ppdb"
+              className="bg-white text-slate-900 px-8 py-4 rounded-2xl font-extrabold hover:bg-yellow-300 transition-all shadow-lg hover:shadow-xl whitespace-nowrap inline-flex items-center gap-2"
+            >
+              Daftar PPDB Sekarang
+              <span>→</span>
+            </Link>
           </div>
-          <Link
-            href="/ppdb"
-            className="bg-[#C9A961] text-[#0F2C4C] px-8 py-3.5 rounded-lg font-bold hover:bg-[#A88C42] transition-all shadow-lg hover:shadow-xl whitespace-nowrap inline-flex items-center gap-2 group"
-          >
-            Daftar PPDB Sekarang
-            <span className="group-hover:translate-x-1 transition-transform">→</span>
-          </Link>
         </div>
       </div>
 
       {/* KONTEN UTAMA */}
-      <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+      <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
         {/* Kolom 1: Identitas */}
         <div>
           <div className="flex items-center gap-3 mb-5">
-                        <img
-              src="/logo-sdn.png"
-              alt={`Logo ${sekolah.namaSingkat}`}
-              className="w-14 h-14 object-contain"
-            />
+            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center flex-shrink-0">
+              <img
+                src="/logo-sdn.png"
+                alt="Logo SDN 3 Pelang"
+                className="w-10 h-10 object-contain"
+              />
+            </div>
             <div>
-              <div className="font-serif font-bold text-lg text-white">
-                {sekolah.namaSingkat}
+              <div className="font-heading font-extrabold text-lg text-white">
+                SDN 3 Pelang
               </div>
-              <div className="text-xs uppercase tracking-widest text-[#C9A961]">
+              <div className="text-xs text-blue-300 font-semibold">
                 NPSN {sekolah.npsn}
               </div>
             </div>
           </div>
 
-          <p className="text-white/60 text-sm leading-relaxed mb-4">
-            Sekolah Dasar Negeri terakreditasi {sekolah.akreditasi} di
-            Kecamatan {sekolah.alamat.kecamatan}, Kabupaten{" "}
-            {sekolah.alamat.kabupaten}. Mendidik generasi cerdas dan
-            berkarakter sejak 1985.
+          <p className="text-slate-200 text-sm leading-relaxed mb-4">
+            Sekolah Dasar Negeri terakreditasi{" "}
+            <strong className="text-yellow-300 font-extrabold">
+              {sekolah.akreditasi}
+            </strong>{" "}
+            di Kecamatan {sekolah.alamat.kecamatan}, Kabupaten{" "}
+            {sekolah.alamat.kabupaten}. Mendidik generasi cerdas dan berkarakter
+            sejak 1985.
           </p>
 
-          <div className="inline-block bg-[#C9A961]/10 border border-[#C9A961]/30 px-3 py-1.5 rounded-full text-xs text-[#C9A961] font-semibold">
-            ◆ Akreditasi {sekolah.akreditasi}
+          <div className="inline-block bg-yellow-500/20 border border-yellow-500/40 px-3 py-1.5 rounded-full text-xs text-yellow-300 font-bold">
+            ⭐ Akreditasi {sekolah.akreditasi}
           </div>
         </div>
 
         {/* Kolom 2: Navigasi */}
         <div>
-          <h4 className="font-serif font-bold text-lg mb-5 text-[#C9A961]">
+          <h4 className="font-heading font-extrabold text-base mb-5 text-white">
             Navigasi
           </h4>
-          <ul className="space-y-2.5 text-sm">
+          <ul className="space-y-3 text-sm">
             {menu.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="text-white/70 hover:text-[#C9A961] transition-colors inline-flex items-center gap-2 group"
+                  className="text-slate-200 hover:text-yellow-300 transition-colors inline-flex items-center gap-2 group font-medium"
                 >
-                  <span className="text-[#C9A961] group-hover:translate-x-1 transition-transform">
+                  <span className="text-blue-400 group-hover:translate-x-1 transition-transform">
                     ›
                   </span>
                   {item.label}
@@ -86,13 +94,15 @@ export default function Footer() {
 
         {/* Kolom 3: Kontak */}
         <div>
-          <h4 className="font-serif font-bold text-lg mb-5 text-[#C9A961]">
+          <h4 className="font-heading font-extrabold text-base mb-5 text-white">
             Hubungi Kami
           </h4>
-          <ul className="space-y-3 text-sm">
+          <ul className="space-y-4 text-sm">
             <li className="flex items-start gap-3">
-              <span className="text-[#C9A961] flex-shrink-0">📍</span>
-              <span className="text-white/70 leading-relaxed">
+              <span className="text-blue-400 flex-shrink-0 mt-0.5 text-base">
+                📍
+              </span>
+              <span className="text-slate-200 leading-relaxed">
                 {sekolah.alamat.jalan}
                 <br />
                 Desa {sekolah.alamat.desa}, Kec. {sekolah.alamat.kecamatan}
@@ -101,47 +111,39 @@ export default function Footer() {
               </span>
             </li>
             <li className="flex items-start gap-3">
-              <span className="text-[#C9A961] flex-shrink-0">📞</span>
+              <span className="text-blue-400 flex-shrink-0 mt-0.5 text-base">
+                📞
+              </span>
               <a
                 href={`https://wa.me/${sekolah.whatsapp}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/70 hover:text-[#C9A961] transition-colors"
+                className="text-slate-200 hover:text-yellow-300 transition-colors font-medium"
               >
                 {sekolah.telepon}
               </a>
             </li>
-            {sekolah.email && (
-              <li className="flex items-start gap-3">
-                <span className="text-[#C9A961] flex-shrink-0">✉️</span>
-                <a
-                  href={`mailto:${sekolah.email}`}
-                  className="text-white/70 hover:text-[#C9A961] transition-colors break-all"
-                >
-                  {sekolah.email}
-                </a>
-              </li>
-            )}
           </ul>
         </div>
 
         {/* Kolom 4: Sosmed */}
         <div>
-          <h4 className="font-serif font-bold text-lg mb-5 text-[#C9A961]">
+          <h4 className="font-heading font-extrabold text-base mb-5 text-white">
             Ikuti Kami
           </h4>
-          <p className="text-white/60 text-sm mb-5">
+          <p className="text-slate-200 text-sm mb-5">
             Dapatkan update terbaru seputar kegiatan sekolah.
           </p>
           <div className="flex gap-3">
             {[
-              { icon: "📘", nama: "Facebook", href: "#" },
-              { icon: "📷", nama: "Instagram", href: "#" },
-              { icon: "▶️", nama: "YouTube", href: "#" },
+              { icon: "📘", nama: "Facebook", href: "#", bg: "bg-blue-600" },
+              { icon: "📷", nama: "Instagram", href: "#", bg: "bg-pink-600" },
+              { icon: "▶️", nama: "YouTube", href: "#", bg: "bg-red-600" },
               {
                 icon: "💬",
                 nama: "WhatsApp",
                 href: `https://wa.me/${sekolah.whatsapp}`,
+                bg: "bg-green-600",
               },
             ].map((s, i) => (
               <a
@@ -150,7 +152,7 @@ export default function Footer() {
                 target={s.href.startsWith("http") ? "_blank" : "_self"}
                 rel="noopener noreferrer"
                 aria-label={s.nama}
-                className="w-11 h-11 rounded-lg bg-white/5 border border-white/10 hover:bg-[#C9A961] hover:border-[#C9A961] hover:text-[#0F2C4C] transition-all flex items-center justify-center text-lg"
+                className={`w-11 h-11 rounded-xl ${s.bg} hover:scale-110 hover:shadow-xl transition-all flex items-center justify-center text-lg`}
               >
                 {s.icon}
               </a>
@@ -160,16 +162,18 @@ export default function Footer() {
       </div>
 
       {/* COPYRIGHT */}
-      <div className="border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row justify-between items-center gap-3 text-sm text-white/50">
+      <div className="border-t border-slate-700">
+        <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row justify-between items-center gap-3 text-sm text-slate-300">
           <div className="text-center md:text-left">
             © {tahun}{" "}
-            <strong className="text-white/80">{sekolah.nama}</strong>. Hak
-            cipta dilindungi.
+            <strong className="text-white">{sekolah.nama}</strong>. Hak cipta
+            dilindungi.
           </div>
           <div className="text-center md:text-right flex items-center gap-2">
-            <span className="text-[#C9A961]">◆</span>
-            NPSN {sekolah.npsn} • Akreditasi {sekolah.akreditasi}
+            <span className="text-yellow-400">⭐</span>
+            <span className="text-slate-200">
+              NPSN {sekolah.npsn} • Akreditasi {sekolah.akreditasi}
+            </span>
           </div>
         </div>
       </div>

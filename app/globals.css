@@ -1,26 +1,44 @@
 @import "tailwindcss";
 
 :root {
-  --primary: #0F2C4C;
-  --primary-light: #1E5FAA;
-  --accent: #C9A961;
-  --accent-dark: #A88C42;
-  --bg: #FAF8F3;
-  --bg-alt: #F5F3EE;
-  --text: #1A1A1A;
-  --text-muted: #6B6B6B;
-  --border: #E5E1D8;
+  /* Warna utama 2026 — CERAH */
+  --primary: #1E5EFF;
+  --primary-dark: #0F3CC9;
+  --sky: #38BDF8;
+  --sunny: #FBBF24;
+  --sunny-dark: #F59E0B;
+  
+  /* Aksen ceria */
+  --purple: #8B5CF6;
+  --pink: #EC4899;
+  --green: #10B981;
+  --orange: #FB923C;
+  
+  /* Netral — PUTIH BERSIH */
+  --ink: #0F172A;
+  --slate: #475569;
+  --cloud: #F1F5F9;
+  --white: #FFFFFF;
+  --light-blue: #EAF4FF;
+  --border: #E2E8F0;
 }
 
 @theme inline {
-  --color-primary: #0F2C4C;
-  --color-primary-light: #1E5FAA;
-  --color-accent: #C9A961;
-  --color-accent-dark: #A88C42;
-  --color-bg: #FAF8F3;
-  --color-bg-alt: #F5F3EE;
-  --color-border: #E5E1D8;
-  --font-sans: var(--font-inter);
+  --color-primary: #1E5EFF;
+  --color-primary-dark: #0F3CC9;
+  --color-sky: #38BDF8;
+  --color-sunny: #FBBF24;
+  --color-sunny-dark: #F59E0B;
+  --color-purple: #8B5CF6;
+  --color-pink: #EC4899;
+  --color-green: #10B981;
+  --color-orange: #FB923C;
+  --color-ink: #0F172A;
+  --color-slate: #475569;
+  --color-cloud: #F1F5F9;
+  --color-light-blue: #EAF4FF;
+  --color-border: #E2E8F0;
+  --font-sans: var(--font-nunito);
   --font-heading: var(--font-jakarta);
 }
 
@@ -34,28 +52,190 @@ html, body {
 }
 
 body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font-inter), system-ui, sans-serif;
-  line-height: 1.7;
+  background: var(--white);
+  color: var(--ink);
+  font-family: var(--font-nunito), system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.75;
+  font-weight: 500;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-playfair), var(--font-jakarta), serif;
-  font-weight: 700;
-  color: var(--primary);
+  font-family: var(--font-jakarta), system-ui, sans-serif;
+  font-weight: 800;
+  color: var(--ink);
   line-height: 1.2;
   letter-spacing: -0.02em;
 }
 
-/* Smooth scroll */
+/* Ukuran heading lebih besar & jelas */
+h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
+h2 { font-size: clamp(2rem, 4vw, 3rem); }
+h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
+h4 { font-size: 1.25rem; }
+
+p {
+  color: var(--ink);
+  font-weight: 500;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
-/* Selection warna */
 ::selection {
-  background: var(--accent);
-  color: var(--primary);
+  background: var(--sunny);
+  color: var(--ink);
+}
+
+/* Scrollbar modern */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--cloud);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
+}
+
+/* ============================================
+   UTILITY CLASSES 2026
+   ============================================ */
+
+/* Aurora gradient background */
+.bg-aurora {
+  background: 
+    radial-gradient(at 20% 30%, #38BDF8 0px, transparent 50%),
+    radial-gradient(at 80% 20%, #8B5CF6 0px, transparent 50%),
+    radial-gradient(at 60% 80%, #FBBF24 0px, transparent 50%),
+    radial-gradient(at 10% 90%, #1E5EFF 0px, transparent 50%);
+}
+
+/* Mesh gradient subtle */
+.bg-mesh-light {
+  background-color: #FFFFFF;
+  background-image: 
+    radial-gradient(at 20% 10%, rgba(30, 94, 255, 0.08) 0px, transparent 50%),
+    radial-gradient(at 80% 90%, rgba(251, 191, 36, 0.08) 0px, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(139, 92, 246, 0.05) 0px, transparent 50%);
+}
+
+/* Glassmorphism */
+.glass {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+/* Card modern */
+.card-modern {
+  background: white;
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: 
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    0 4px 12px rgba(15, 23, 42, 0.06),
+    0 16px 32px rgba(15, 23, 42, 0.04);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-modern:hover {
+  transform: translateY(-4px);
+  box-shadow: 
+    0 4px 8px rgba(15, 23, 42, 0.04),
+    0 12px 24px rgba(30, 94, 255, 0.12),
+    0 24px 48px rgba(30, 94, 255, 0.08);
+}
+
+/* Text gradient */
+.text-gradient {
+  background: linear-gradient(135deg, #1E5EFF 0%, #8B5CF6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-sunny {
+  background: linear-gradient(135deg, #F59E0B 0%, #FB923C 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Blob dekoratif */
+.blob {
+  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  filter: blur(60px);
+  opacity: 0.4;
+}
+
+/* Button primary */
+.btn-primary {
+  background: linear-gradient(135deg, #1E5EFF 0%, #8B5CF6 100%);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 16px;
+  font-weight: 700;
+  font-family: var(--font-jakarta);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 24px rgba(30, 94, 255, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(30, 94, 255, 0.4);
+}
+
+/* Button sunny */
+.btn-sunny {
+  background: linear-gradient(135deg, #FBBF24 0%, #FB923C 100%);
+  color: #0F172A;
+  padding: 1rem 2rem;
+  border-radius: 16px;
+  font-weight: 800;
+  font-family: var(--font-jakarta);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 24px rgba(251, 191, 36, 0.3);
+}
+
+.btn-sunny:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(251, 191, 36, 0.5);
+}
+
+/* Animasi floating */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Animasi fade in up */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
 }

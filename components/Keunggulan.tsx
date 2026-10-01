@@ -1,3 +1,6 @@
+"use client";
+
+import { FadeInUp, StaggerContainer, StaggerItem } from "./Animate";
 import { keunggulan } from "@/lib/data";
 
 export default function Keunggulan() {
@@ -5,57 +8,51 @@ export default function Keunggulan() {
     <section className="py-20 md:py-28 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         {/* Judul Section */}
-        <div className="text-center mb-16">
-          <span className="text-[#C9A961] font-bold text-xs uppercase tracking-[0.2em]">
+        <FadeInUp className="text-center mb-16">
+          <span className="inline-block bg-blue-100 text-blue-700 text-xs font-bold px-4 py-2 rounded-full uppercase tracking-wider mb-4">
             Keunggulan Kami
           </span>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#0F2C4C] mt-3 mb-4">
+          <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 mt-3 mb-4">
             Mengapa Memilih{" "}
-            <span className="italic text-[#C9A961]">SDN 3 Pelang?</span>
+            <span className="text-gradient">SDN 3 Pelang?</span>
           </h2>
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="w-12 h-0.5 bg-[#C9A961]" />
-            <span className="text-[#C9A961] text-xs">◆</span>
-            <div className="w-12 h-0.5 bg-[#C9A961]" />
-          </div>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto font-medium">
             Kami menghadirkan pendidikan dasar berkualitas dengan pendekatan
             menyeluruh untuk tumbuh kembang putra-putri Anda.
           </p>
-        </div>
+        </FadeInUp>
 
-        {/* Grid 4 Kotak */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Grid 4 Kartu dengan Animasi Stagger */}
+        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {keunggulan.map((item, i) => (
-            <div
-              key={i}
-              className="group bg-[#FAF8F3] p-8 rounded-2xl hover:bg-[#0F2C4C] transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
-            >
-              {/* Nomor dekoratif */}
-              <div className="text-[#C9A961]/30 font-serif text-5xl font-bold mb-2 group-hover:text-[#C9A961]/60 transition-colors">
-                0{i + 1}
+            <StaggerItem key={i}>
+              <div className="group bg-white p-8 rounded-3xl border-2 border-slate-100 hover:border-blue-500 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 h-full">
+                {/* Nomor dekoratif */}
+                <div className="font-heading text-5xl font-extrabold text-slate-200 mb-2 group-hover:text-blue-200 transition-colors duration-300">
+                  0{i + 1}
+                </div>
+
+                {/* Ikon */}
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-3xl mb-5 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg">
+                  {item.icon}
+                </div>
+
+                {/* Judul */}
+                <h3 className="font-heading text-xl font-extrabold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors leading-snug">
+                  {item.judul}
+                </h3>
+
+                {/* Garis dekoratif */}
+                <div className="w-12 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mb-3 group-hover:w-20 transition-all duration-300" />
+
+                {/* Deskripsi */}
+                <p className="text-slate-600 text-sm leading-relaxed font-medium">
+                  {item.deskripsi}
+                </p>
               </div>
-
-              {/* Ikon */}
-              <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
-                {item.icon}
-              </div>
-
-              {/* Judul */}
-              <h3 className="font-serif text-lg font-bold text-[#0F2C4C] mb-3 group-hover:text-white transition-colors leading-snug">
-                {item.judul}
-              </h3>
-
-              {/* Garis dekoratif */}
-              <div className="w-10 h-0.5 bg-[#C9A961] mb-3 group-hover:w-16 transition-all duration-300" />
-
-              {/* Deskripsi */}
-              <p className="text-gray-600 text-sm leading-relaxed group-hover:text-white/70 transition-colors">
-                {item.deskripsi}
-              </p>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );
