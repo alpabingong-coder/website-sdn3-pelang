@@ -23,20 +23,18 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-               {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 group">
+                     {/* Logo */}
+        <Link href="/" className="flex items-center gap-2 md:gap-3 group">
           <img
             src="/logo-sdn.png"
             alt={`Logo ${sekolah.namaSingkat}`}
-            className="w-14 h-14 object-contain group-hover:scale-105 transition-transform drop-shadow-sm"
+            className="w-12 h-12 md:w-14 md:h-14 object-contain group-hover:scale-105 transition-transform drop-shadow-sm flex-shrink-0"
           />
-          <div className="hidden sm:block">
-            <div className="font-serif font-bold text-[#0F2C4C] leading-tight text-lg">
-              {sekolah.namaSingkat}
-            </div>
-            <div className="text-[10px] uppercase tracking-widest text-[#C9A961] font-semibold mt-0.5">
-              Sekolah Dasar Negeri
-            </div>
+          <div>
+            <div className="text-[9px] md:text-[10px] uppercase tracking-widest text-blue-600 font-semibold mt-0.5">
+  <span className="md:hidden">SD NEGERI 3 PELANG</span>
+  <span className="hidden md:inline">SEKOLAH DASAR NEGERI 3 PELANG</span>
+</div>
           </div>
         </Link>
 
