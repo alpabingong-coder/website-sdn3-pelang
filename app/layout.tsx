@@ -27,13 +27,37 @@ export const metadata: Metadata = {
     "sekolah dasar Jepara",
     "PPDB Jepara",
     "SD Mayong",
+    "sekolah dasar negeri",
+    "pendaftaran siswa baru",
   ],
+  authors: [{ name: "SD Negeri 3 Pelang" }],
+  verification: {
+    google: "qQ2OMwXSTVduXN3BkW5DLAP6eyWvfi0H6QeQj9UP9KA",
+  },
   openGraph: {
     title: "SD Negeri 3 Pelang | Sekolah Dasar Modern dan Berkarakter",
     description:
       "Website resmi SD Negeri 3 Pelang. Informasi PPDB, program unggulan, galeri kegiatan, dan berita terbaru.",
     type: "website",
     locale: "id_ID",
+    siteName: "SD Negeri 3 Pelang",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "SD Negeri 3 Pelang | Sekolah Dasar Modern dan Berkarakter",
+    description:
+      "Website resmi SD Negeri 3 Pelang. Informasi PPDB, program unggulan, galeri kegiatan, dan berita terbaru.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 
@@ -43,10 +67,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="id"
-      className={`${jakarta.variable} ${nunito.variable}`}
-    >
+    <html lang="id" className={`${jakarta.variable} ${nunito.variable}`}>
       <body className="antialiased relative">
         <ScrollProgress />
         <MouseSpotlight />
