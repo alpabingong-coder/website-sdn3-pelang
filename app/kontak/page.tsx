@@ -1,10 +1,10 @@
 "use client";
 
-import Link from "next/link";
 import TopBar from "@/components/TopBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { sekolah } from "@/lib/data";
+import { FadeInUp, StaggerContainer, StaggerItem } from "@/components/Animate";
 
 export default function KontakPage() {
   return (
@@ -13,15 +13,19 @@ export default function KontakPage() {
       <Navbar />
 
       {/* HERO */}
-      <section className="bg-gradient-to-br from-[#1E5FAA] via-[#164a85] to-[#0f3a6b] text-white py-16 md:py-20">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <span className="inline-block bg-[#FDB913] text-[#1E5FAA] text-sm font-bold px-4 py-1 rounded-full mb-4">
+      <section className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-purple-50 to-yellow-50">
+        <div className="absolute top-0 -left-20 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-40 pointer-events-none" />
+        <div className="absolute -bottom-20 -right-20 w-96 h-96 bg-yellow-200 rounded-full mix-blend-multiply filter blur-3xl opacity-40 pointer-events-none" />
+
+        <div className="relative max-w-7xl mx-auto px-6 py-16 md:py-24 text-center">
+          <span className="inline-block bg-blue-100 text-blue-700 text-xs font-bold px-4 py-2 rounded-full uppercase tracking-wider mb-4">
             Hubungi Kami
           </span>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Ada Pertanyaan? Sampaikan ke Kami
+          <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 mb-4 leading-tight">
+            Ada Pertanyaan?{" "}
+            <span className="text-gradient">Sampaikan ke Kami</span>
           </h1>
-          <p className="text-lg text-blue-100 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-slate-700 max-w-2xl mx-auto font-medium">
             Tim {sekolah.namaSingkat} siap membantu Anda. Hubungi kami melalui
             kontak di bawah ini.
           </p>
@@ -29,206 +33,231 @@ export default function KontakPage() {
       </section>
 
       {/* INFO KONTAK */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <section className="py-20 md:py-28 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Alamat */}
-            <div className="bg-[#F5F9FF] rounded-xl p-6 text-center hover:shadow-lg transition">
-              <div className="w-16 h-16 mx-auto bg-[#1E5FAA] rounded-full flex items-center justify-center text-2xl mb-4">
-                📍
+            <StaggerItem>
+              <div className="group bg-blue-50 rounded-3xl p-6 text-center hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 h-full relative overflow-hidden">
+                <div className="absolute -top-8 -right-8 w-24 h-24 rounded-full bg-white/50 blur-xl group-hover:scale-150 transition-transform duration-700" />
+                <div className="relative w-16 h-16 mx-auto bg-gradient-to-br from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center text-2xl mb-4 shadow-lg group-hover:scale-110 transition-transform">
+                  📍
+                </div>
+                <h3 className="font-heading font-extrabold text-slate-900 mb-2">
+                  Alamat
+                </h3>
+                <p className="text-sm text-slate-600 leading-relaxed font-medium">
+                  {sekolah.alamat.jalan}
+                  <br />
+                  Desa {sekolah.alamat.desa}, Kec. {sekolah.alamat.kecamatan}
+                  <br />
+                  {sekolah.alamat.kabupaten}, {sekolah.alamat.provinsi}
+                </p>
               </div>
-              <h3 className="font-bold text-[#1E5FAA] mb-2">Alamat</h3>
-              <p className="text-sm text-gray-600 leading-relaxed">
-                {sekolah.alamat.jalan}
-                <br />
-                Desa {sekolah.alamat.desa}, Kec. {sekolah.alamat.kecamatan}
-                <br />
-                {sekolah.alamat.kabupaten}, {sekolah.alamat.provinsi}
-              </p>
-            </div>
+            </StaggerItem>
 
             {/* WhatsApp */}
-            <div className="bg-[#F5F9FF] rounded-xl p-6 text-center hover:shadow-lg transition">
-              <div className="w-16 h-16 mx-auto bg-[#25D366] rounded-full flex items-center justify-center text-2xl mb-4">
-                💬
+            <StaggerItem>
+              <div className="group bg-green-50 rounded-3xl p-6 text-center hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 h-full relative overflow-hidden">
+                <div className="absolute -top-8 -right-8 w-24 h-24 rounded-full bg-white/50 blur-xl group-hover:scale-150 transition-transform duration-700" />
+                <div className="relative w-16 h-16 mx-auto bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center text-2xl mb-4 shadow-lg group-hover:scale-110 transition-transform">
+                  💬
+                </div>
+                <h3 className="font-heading font-extrabold text-slate-900 mb-2">
+                  WhatsApp
+                </h3>
+                <p className="text-sm text-slate-600 mb-3 font-medium">
+                  {sekolah.telepon}
+                </p>
+                <a
+                  href={`https://wa.me/${sekolah.whatsapp}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-green-600 font-extrabold text-sm hover:underline"
+                >
+                  Chat Sekarang →
+                </a>
               </div>
-              <h3 className="font-bold text-[#1E5FAA] mb-2">WhatsApp</h3>
-              <p className="text-sm text-gray-600 mb-3">{sekolah.telepon}</p>
-              <a
-                href={`https://wa.me/${sekolah.whatsapp}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#25D366] font-semibold text-sm hover:underline"
-              >
-                Chat Sekarang →
-              </a>
-            </div>
+            </StaggerItem>
 
             {/* Telepon */}
-            <div className="bg-[#F5F9FF] rounded-xl p-6 text-center hover:shadow-lg transition">
-              <div className="w-16 h-16 mx-auto bg-[#FDB913] rounded-full flex items-center justify-center text-2xl mb-4">
-                📞
+            <StaggerItem>
+              <div className="group bg-yellow-50 rounded-3xl p-6 text-center hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 h-full relative overflow-hidden">
+                <div className="absolute -top-8 -right-8 w-24 h-24 rounded-full bg-white/50 blur-xl group-hover:scale-150 transition-transform duration-700" />
+                <div className="relative w-16 h-16 mx-auto bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl flex items-center justify-center text-2xl mb-4 shadow-lg group-hover:scale-110 transition-transform">
+                  📞
+                </div>
+                <h3 className="font-heading font-extrabold text-slate-900 mb-2">
+                  Telepon
+                </h3>
+                <p className="text-sm text-slate-600 mb-3 font-medium">
+                  {sekolah.telepon}
+                </p>
+                <a
+                  href={`tel:${sekolah.telepon.replace(/-/g, "")}`}
+                  className="text-orange-600 font-extrabold text-sm hover:underline"
+                >
+                  Telepon →
+                </a>
               </div>
-              <h3 className="font-bold text-[#1E5FAA] mb-2">Telepon</h3>
-              <p className="text-sm text-gray-600 mb-3">{sekolah.telepon}</p>
-              <a
-                href={`tel:${sekolah.telepon.replace(/-/g, "")}`}
-                className="text-[#FDB913] font-semibold text-sm hover:underline"
-              >
-                Telepon →
-              </a>
-            </div>
+            </StaggerItem>
 
             {/* Email */}
-            <div className="bg-[#F5F9FF] rounded-xl p-6 text-center hover:shadow-lg transition">
-              <div className="w-16 h-16 mx-auto bg-[#E63946] rounded-full flex items-center justify-center text-2xl mb-4">
-                ✉️
+            <StaggerItem>
+              <div className="group bg-purple-50 rounded-3xl p-6 text-center hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 h-full relative overflow-hidden">
+                <div className="absolute -top-8 -right-8 w-24 h-24 rounded-full bg-white/50 blur-xl group-hover:scale-150 transition-transform duration-700" />
+                <div className="relative w-16 h-16 mx-auto bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center text-2xl mb-4 shadow-lg group-hover:scale-110 transition-transform">
+                  ✉️
+                </div>
+                <h3 className="font-heading font-extrabold text-slate-900 mb-2">
+                  Email
+                </h3>
+                <p className="text-sm text-slate-600 mb-3 font-medium break-all">
+                  {sekolah.email || "Segera hadir"}
+                </p>
+                {sekolah.email && (
+                  <a
+                    href={`mailto:${sekolah.email}`}
+                    className="text-purple-600 font-extrabold text-sm hover:underline"
+                  >
+                    Kirim Email →
+                  </a>
+                )}
               </div>
-              <h3 className="font-bold text-[#1E5FAA] mb-2">Email</h3>
-              <p className="text-sm text-gray-600 mb-3 break-all">
-                {sekolah.email || "Segera hadir"}
-              </p>
-              {sekolah.email && (
-                <a
-                  href={`mailto:${sekolah.email}`}
-                  className="text-[#E63946] font-semibold text-sm hover:underline"
-                >
-                  Kirim Email →
-                </a>
-              )}
-            </div>
-          </div>
+            </StaggerItem>
+          </StaggerContainer>
         </div>
       </section>
 
       {/* FORM + PETA */}
-      <section className="py-16 bg-[#F5F9FF]">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <span className="text-[#E63946] font-semibold text-sm uppercase tracking-wider">
+      <section className="py-20 md:py-28 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <FadeInUp className="text-center mb-16">
+            <span className="inline-block bg-purple-100 text-purple-700 text-xs font-bold px-4 py-2 rounded-full uppercase tracking-wider mb-4">
               Kirim Pesan
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#1E5FAA] mt-2">
-              Ada yang Ingin Ditanyakan?
+            <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 mt-3">
+              Ada yang Ingin{" "}
+              <span className="text-gradient">Ditanyakan?</span>
             </h2>
-          </div>
+          </FadeInUp>
 
           <div className="grid lg:grid-cols-2 gap-8">
             {/* Form */}
-            <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm">
-              <h3 className="text-2xl font-bold text-[#1E5FAA] mb-2">
-                Formulir Kontak
-              </h3>
-              <p className="text-gray-500 text-sm mb-6">
-                Isi form di bawah, pesan akan dikirim ke WhatsApp sekolah.
-              </p>
-
-              <div className="space-y-4">
-                <div>
-                  <label className="text-sm font-semibold text-gray-700 block mb-2">
-                    Nama Lengkap *
-                  </label>
-                  <input
-                    id="nama"
-                    type="text"
-                    placeholder="Nama Anda"
-                    className="w-full border border-gray-200 rounded-md px-4 py-2.5 text-sm focus:outline-none focus:border-[#1E5FAA]"
-                  />
-                </div>
-
-                <div>
-                  <label className="text-sm font-semibold text-gray-700 block mb-2">
-                    No. HP / WhatsApp
-                  </label>
-                  <input
-                    id="hp"
-                    type="text"
-                    placeholder="08xx-xxxx-xxxx"
-                    className="w-full border border-gray-200 rounded-md px-4 py-2.5 text-sm focus:outline-none focus:border-[#1E5FAA]"
-                  />
-                </div>
-
-                <div>
-                  <label className="text-sm font-semibold text-gray-700 block mb-2">
-                    Subjek *
-                  </label>
-                  <select
-                    id="subjek"
-                    className="w-full border border-gray-200 rounded-md px-4 py-2.5 text-sm focus:outline-none focus:border-[#1E5FAA] bg-white"
-                  >
-                    <option value="">Pilih subjek...</option>
-                    <option value="Pertanyaan Umum">Pertanyaan Umum</option>
-                    <option value="Informasi PPDB">Informasi PPDB</option>
-                    <option value="Kerja Sama">Kerja Sama</option>
-                    <option value="Keluhan / Saran">Keluhan / Saran</option>
-                    <option value="Lainnya">Lainnya</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="text-sm font-semibold text-gray-700 block mb-2">
-                    Pesan *
-                  </label>
-                  <textarea
-                    id="pesan"
-                    placeholder="Tulis pesan Anda di sini..."
-                    rows={5}
-                    className="w-full border border-gray-200 rounded-md px-4 py-2.5 text-sm focus:outline-none focus:border-[#1E5FAA]"
-                  ></textarea>
-                </div>
-
-                <button
-                  onClick={() => {
-                    const get = (id: string) =>
-                      (
-                        document.getElementById(id) as
-                          | HTMLInputElement
-                          | HTMLTextAreaElement
-                          | HTMLSelectElement
-                      )?.value || "-";
-
-                    const nama = get("nama");
-                    const subjek = get("subjek");
-                    const pesan = get("pesan");
-
-                    if (nama === "-" || subjek === "-" || pesan === "-") {
-                      alert("Mohon isi Nama, Subjek, dan Pesan!");
-                      return;
-                    }
-
-                    const text =
-                      `*PESAN DARI WEBSITE ${sekolah.namaSingkat}*\n` +
-                      `---------------------------------\n` +
-                      `*Nama:* ${nama}\n` +
-                      `*No. HP:* ${get("hp")}\n` +
-                      `*Subjek:* ${subjek}\n` +
-                      `---------------------------------\n` +
-                      `*Pesan:*\n${pesan}`;
-
-                    window.open(
-                      `https://wa.me/${sekolah.whatsapp}?text=${encodeURIComponent(
-                        text
-                      )}`,
-                      "_blank"
-                    );
-                  }}
-                  className="w-full bg-[#25D366] text-white py-3 rounded-md font-bold hover:bg-[#1da851] transition flex items-center justify-center gap-2"
-                >
-                  💬 Kirim via WhatsApp
-                </button>
-
-                <p className="text-xs text-gray-400 text-center">
-                  Pesan akan dikirim ke WA resmi sekolah
+            <FadeInUp>
+              <div className="bg-white rounded-3xl p-8 shadow-xl border border-slate-100 h-full">
+                <h3 className="font-heading text-2xl font-extrabold text-slate-900 mb-2">
+                  Formulir Kontak
+                </h3>
+                <p className="text-slate-500 text-sm mb-6 font-medium">
+                  Isi form di bawah, pesan akan dikirim ke WhatsApp sekolah.
                 </p>
-              </div>
-            </div>
 
-            {/* Peta + Info */}
-            <div className="space-y-6">
+                <div className="space-y-4">
+                  <div>
+                    <label className="text-sm font-bold text-slate-700 block mb-2">
+                      Nama Lengkap *
+                    </label>
+                    <input
+                      id="nama"
+                      type="text"
+                      placeholder="Nama Anda"
+                      className="w-full border-2 border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500 font-medium"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="text-sm font-bold text-slate-700 block mb-2">
+                      No. HP / WhatsApp
+                    </label>
+                    <input
+                      id="hp"
+                      type="text"
+                      placeholder="08xx-xxxx-xxxx"
+                      className="w-full border-2 border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500 font-medium"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="text-sm font-bold text-slate-700 block mb-2">
+                      Subjek *
+                    </label>
+                    <select
+                      id="subjek"
+                      className="w-full border-2 border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500 bg-white font-medium"
+                    >
+                      <option value="">Pilih subjek...</option>
+                      <option value="Pertanyaan Umum">Pertanyaan Umum</option>
+                      <option value="Informasi PPDB">Informasi PPDB</option>
+                      <option value="Kerja Sama">Kerja Sama</option>
+                      <option value="Keluhan / Saran">Keluhan / Saran</option>
+                      <option value="Lainnya">Lainnya</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="text-sm font-bold text-slate-700 block mb-2">
+                      Pesan *
+                    </label>
+                    <textarea
+                      id="pesan"
+                      placeholder="Tulis pesan Anda di sini..."
+                      rows={5}
+                      className="w-full border-2 border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500 font-medium"
+                    ></textarea>
+                  </div>
+
+                  <button
+                    onClick={() => {
+                      const get = (id: string) =>
+                        (
+                          document.getElementById(id) as
+                            | HTMLInputElement
+                            | HTMLTextAreaElement
+                            | HTMLSelectElement
+                        )?.value || "-";
+
+                      const nama = get("nama");
+                      const subjek = get("subjek");
+                      const pesan = get("pesan");
+
+                      if (nama === "-" || subjek === "-" || pesan === "-") {
+                        alert("Mohon isi Nama, Subjek, dan Pesan!");
+                        return;
+                      }
+
+                      const text =
+                        `*PESAN DARI WEBSITE ${sekolah.namaSingkat}*\n` +
+                        `---------------------------------\n` +
+                        `*Nama:* ${nama}\n` +
+                        `*No. HP:* ${get("hp")}\n` +
+                        `*Subjek:* ${subjek}\n` +
+                        `---------------------------------\n` +
+                        `*Pesan:*\n${pesan}`;
+
+                      window.open(
+                        `https://wa.me/${sekolah.whatsapp}?text=${encodeURIComponent(text)}`,
+                        "_blank"
+                      );
+                    }}
+                    className="w-full bg-gradient-to-r from-green-500 to-emerald-500 text-white py-4 rounded-xl font-extrabold hover:from-green-600 hover:to-emerald-600 transition-all shadow-lg hover:shadow-xl font-heading"
+                  >
+                    💬 Kirim via WhatsApp
+                  </button>
+
+                  <p className="text-xs text-slate-500 text-center font-medium">
+                    Pesan akan dikirim ke WA resmi sekolah
+                  </p>
+                </div>
+              </div>
+            </FadeInUp>
+
+            {/* Peta + Jam */}
+            <FadeInUp delay={0.2} className="space-y-6">
               {/* Peta */}
-              <div className="bg-white rounded-2xl overflow-hidden shadow-sm">
-                <div className="p-4 border-b">
-                  <h3 className="font-bold text-[#1E5FAA]">
+              <div className="bg-white rounded-3xl overflow-hidden shadow-xl border border-slate-100">
+                <div className="p-4 border-b border-slate-100">
+                  <h3 className="font-heading font-extrabold text-slate-900 flex items-center gap-2">
                     📍 Lokasi Sekolah
                   </h3>
                 </div>
@@ -249,7 +278,7 @@ export default function KontakPage() {
                     )}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#1E5FAA] text-sm font-semibold hover:underline inline-flex items-center gap-2"
+                    className="text-blue-600 text-sm font-extrabold hover:underline inline-flex items-center gap-2"
                   >
                     🗺️ Buka di Google Maps →
                   </a>
@@ -257,53 +286,54 @@ export default function KontakPage() {
               </div>
 
               {/* Jam Operasional */}
-              <div className="bg-white rounded-2xl p-6 shadow-sm">
-                <h3 className="font-bold text-[#1E5FAA] mb-4 flex items-center gap-2">
+              <div className="bg-white rounded-3xl p-6 shadow-xl border border-slate-100">
+                <h3 className="font-heading font-extrabold text-slate-900 mb-4 flex items-center gap-2">
                   🕐 Jam Operasional
                 </h3>
                 <div className="space-y-3 text-sm">
-                  <div className="flex justify-between items-center pb-2 border-b border-gray-100">
-                    <span className="text-gray-600">Senin - Kamis</span>
-                    <span className="font-semibold text-[#1E5FAA]">
-                      07.00 - 13.00 WIB
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center pb-2 border-b border-gray-100">
-                    <span className="text-gray-600">Jumat</span>
-                    <span className="font-semibold text-[#1E5FAA]">
-                      07.00 - 11.00 WIB
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center pb-2 border-b border-gray-100">
-                    <span className="text-gray-600">Sabtu</span>
-                    <span className="font-semibold text-[#1E5FAA]">
-                      07.00 - 12.00 WIB
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-600">Minggu & Hari Libur</span>
-                    <span className="font-semibold text-[#E63946]">
-                      Tutup
-                    </span>
-                  </div>
+                  {[
+                    { hari: "Senin - Kamis", jam: "07.00 - 13.00 WIB", tutup: false },
+                    { hari: "Jumat", jam: "07.00 - 11.00 WIB", tutup: false },
+                    { hari: "Sabtu", jam: "07.00 - 12.00 WIB", tutup: false },
+                    { hari: "Minggu & Hari Libur", jam: "Tutup", tutup: true },
+                  ].map((item, i) => (
+                    <div
+                      key={i}
+                      className="flex justify-between items-center pb-2 border-b border-slate-100 last:border-0"
+                    >
+                      <span className="text-slate-600 font-medium">
+                        {item.hari}
+                      </span>
+                      <span
+                        className={`font-extrabold ${
+                          item.tutup ? "text-red-500" : "text-blue-600"
+                        }`}
+                      >
+                        {item.jam}
+                      </span>
+                    </div>
+                  ))}
                 </div>
-                <p className="text-xs text-gray-400 mt-4 italic">
+                <p className="text-xs text-slate-400 mt-4 italic font-medium">
                   * Jam operasional dapat berubah sesuai kegiatan sekolah
                 </p>
               </div>
-            </div>
+            </FadeInUp>
           </div>
         </div>
       </section>
 
-      {/* CTA BESAR */}
-      <section className="py-16 bg-gradient-to-br from-[#1E5FAA] to-[#164a85] text-white">
-        <div className="max-w-4xl mx-auto px-4 text-center">
+      {/* CTA */}
+      <section className="relative bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 overflow-hidden">
+        <div className="absolute top-0 -left-20 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
+        <div className="absolute -bottom-20 -right-20 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
+
+        <div className="relative max-w-4xl mx-auto px-6 py-20 text-center text-white">
           <div className="text-6xl mb-6">💬</div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Butuh Jawaban Cepat?
+          <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4">
+            Butuh <span className="text-yellow-300">Jawaban Cepat?</span>
           </h2>
-          <p className="text-blue-100 mb-8 max-w-2xl mx-auto">
+          <p className="text-white/90 mb-8 max-w-2xl mx-auto font-medium">
             Chat langsung dengan tim {sekolah.namaSingkat} melalui WhatsApp.
             Kami siap membantu Anda.
           </p>
@@ -315,13 +345,13 @@ export default function KontakPage() {
               )}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#25D366] text-white px-8 py-3 rounded-md font-bold hover:bg-[#1da851] transition inline-flex items-center justify-center gap-2 shadow-lg"
+              className="bg-white text-slate-900 px-8 py-4 rounded-2xl font-extrabold hover:bg-yellow-300 transition-all shadow-lg hover:shadow-xl inline-flex items-center justify-center gap-2"
             >
               💬 Chat via WhatsApp
             </a>
             <a
               href={`tel:${sekolah.telepon.replace(/-/g, "")}`}
-              className="bg-[#FDB913] text-[#1E5FAA] px-8 py-3 rounded-md font-bold hover:bg-yellow-400 transition inline-flex items-center justify-center gap-2"
+              className="bg-white/10 backdrop-blur border-2 border-white/40 text-white px-8 py-4 rounded-2xl font-bold hover:bg-white/20 transition-all inline-flex items-center justify-center gap-2"
             >
               📞 Telepon Sekolah
             </a>
